@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1007006587435",
+    "project_id": "fraternity-of-information-tech",
+    "storage_bucket": "fraternity-of-information-tech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007006587435:android:827bd5d1316ecccf73286e",
+        "android_client_info": {
+          "package_name": "com.aniketujgare.fit_2022_23"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007006587435-kjslu97kq9m5ni8m95lge3egs1n17lkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0I9_RBzu5PYx2zvJKolg5fWSlDx8FuFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007006587435-kjslu97kq9m5ni8m95lge3egs1n17lkk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007006587435-6u7g95mv5njn584niko3t3os8l210pgj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fitFraternityOfInformationTechnology"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007006587435:android:ce7984ded44e4bb473286e",
+        "android_client_info": {
+          "package_name": "com.example.fit_fraternity_of_information_technology"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007006587435-kjslu97kq9m5ni8m95lge3egs1n17lkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0I9_RBzu5PYx2zvJKolg5fWSlDx8FuFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007006587435-kjslu97kq9m5ni8m95lge3egs1n17lkk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007006587435-6u7g95mv5njn584niko3t3os8l210pgj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fitFraternityOfInformationTechnology"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
