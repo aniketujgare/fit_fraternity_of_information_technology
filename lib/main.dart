@@ -1,6 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fit_fraternity_of_information_technology/constants.dart';
+import 'package:fit_fraternity_of_information_technology/page/comitee_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
-import 'package:fit_fraternity_of_information_technology/page/searchPage.dart';
+import 'package:fit_fraternity_of_information_technology/page/image_gallery_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
 import 'package:fit_fraternity_of_information_technology/size_config.dart';
@@ -8,51 +13,67 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  final FirebaseAuth auth = FirebaseAuth.instance;
   runApp(
     MaterialApp(
-      title: 'GNav',
-      theme: ThemeData(primaryColor: Colors.blue),
-      // home: const MyHomePage(),
-      initialRoute: SignInScreen.routeName,
+      title: 'FIT',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: kPrimaryColor,
+        ),
+        textTheme: TextTheme(
+          bodyMedium: GoogleFonts.karla(
+            color: const Color(0xff463B57),
+          ),
+        ),
+      ),
+      initialRoute: auth.currentUser != null
+          ? MyHomePage.routeName
+          : SignInScreen.routeName,
       routes: routes,
       debugShowCheckedModeBanner: false,
     ),
   );
+
+  FlutterNativeSplash.remove();
 }
 
 class MyHomePage extends StatefulWidget {
   static String routeName = '/my_home';
-  const MyHomePage({super.key});
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-int index = 2;
-
-class _MyHomePageState extends State<MyHomePage> {
+  MyHomePage({super.key});
   final screens = [
+    const ComiteePage(),
+    const NewsPage(),
     const HomePage(),
-    const SearchPage(),
-    const HomePage(),
-    const HomePage(),
-    const HomePage(),
-    // const SignOutScreen(),
+    const ImageGalleryPage(),
+    const UserPage(),
   ];
   final items = const [
-    Icon(Icons.search, size: 30),
-    Icon(Icons.settings, size: 30),
+    Icon(Icons.people, size: 30),
+    Icon(Icons.newspaper, size: 30),
     Icon(Icons.home, size: 30),
-    Icon(Icons.favorite, size: 30),
+    Icon(Icons.image, size: 30),
     Icon(Icons.person, size: 30),
   ];
+
+  @override
+  MyHomePageState createState() => MyHomePageState();
+}
+
+class MyHomePageState extends State<MyHomePage> {
+  int index = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -62,36 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
           extendBody: true,
           backgroundColor: Colors.grey.shade200,
-          appBar: AppBar(
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: GradientColors.lightBlue,
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    tileMode: TileMode.clamp),
-              ),
-            ),
-            title: Text(
-              'Fraternity of Information Technology',
-              style: TextStyle(
-                fontSize: getProportionateScreenWidth(17),
-              ),
-            ),
-            actions: [
-              Image.asset(
-                'assets/fit_logo.png',
-              ),
-            ],
-            elevation: 3,
-            // centerTitle: true,
-          ),
           bottomNavigationBar: Theme(
             data: Theme.of(context)
                 .copyWith(iconTheme: const IconThemeData(color: Colors.black)),
             child: CurvedNavigationBar(
-              items: items,
+              height: 60,
+              items: widget.items,
               index: index,
               animationCurve: Curves.easeOut,
               animationDuration: const Duration(milliseconds: 300),
@@ -100,14 +97,20 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: (idx) => setState(() => index = idx),
             ),
           ),
-          body: Container(
-            decoration: const BoxDecoration(
+          body: SingleChildScrollView(
+            child: Container(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: GradientColors.snowAgain,
-            )),
-            child: screens[index],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: GradientColors.snowAgain,
+                ),
+              ),
+              child: IndexedStack(
+                index: index,
+                children: widget.screens,
+              ),
+            ),
           ),
         ),
       ),

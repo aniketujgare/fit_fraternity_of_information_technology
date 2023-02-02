@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/main.dart';
-import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../screens/sign_in/sign_in_screen.dart';
@@ -68,7 +66,7 @@ class AuthService {
   Future<void> signOut(BuildContext context) async {
     await _auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => SignInScreen()));
+        context, MaterialPageRoute(builder: (context) => const SignInScreen()));
   }
 // //*Seller Section
 
