@@ -1,4 +1,5 @@
 import 'package:fit_fraternity_of_information_technology/main.dart';
+import 'package:fit_fraternity_of_information_technology/screens/sign_in/otp_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_out/sign_out_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter/widgets.dart';
@@ -10,8 +11,9 @@ import 'screens/sign_in/sign_in_screen.dart';
 final Map<String, WidgetBuilder> routes = {
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   SignInScreen.routeName: (context) => const SignInScreen(),
-  MyHomePage.routeName: (context) => const MyHomePage(),
+  MyHomePage.routeName: (context) => MyHomePage(),
   SignOutScreen.routeName: (context) => const SignOutScreen(),
+  OTPScreen.routeName: (context) => const OTPScreen(),
   // SignUpScreen.routeName: (context) => SignUpScreen(),
   // CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
   // OtpScreen.routeName: (context) => OtpScreen(),

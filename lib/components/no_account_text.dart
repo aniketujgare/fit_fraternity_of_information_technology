@@ -1,4 +1,3 @@
-import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
