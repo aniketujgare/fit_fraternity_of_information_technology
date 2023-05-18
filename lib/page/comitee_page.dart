@@ -21,12 +21,12 @@ class ComiteePage extends StatefulWidget {
 }
 
 class _ComiteePageState extends State<ComiteePage> {
-  String firstName = 'ANIKET', lastName = 'UJGARE';
-  String designation = 'PRESIDENT';
-  String phoneNumber1 = '9175197037', phoneNumber2 = '7020155284';
-  String email = 'aniketujgare@gmail.com';
-  String website = 'aniketcodes.pythonanywhere.com';
-  String address1 = 'Opposite S.R.P.F. Camp', address2 = 'Hingoli-431513';
+  // String firstName = 'ANIKET', lastName = 'UJGARE';
+  // String designation = 'PRESIDENT';
+  // String phoneNumber1 = '9175197037', phoneNumber2 = '7020155284';
+  // String email = 'aniketujgare@gmail.com';
+  // String website = 'aniketcodes.pythonanywhere.com';
+  // String address1 = 'Opposite S.R.P.F. Camp', address2 = 'Hingoli-431513';
 
   @override
   Widget build(BuildContext context) {
