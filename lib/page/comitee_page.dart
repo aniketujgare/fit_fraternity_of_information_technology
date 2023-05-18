@@ -1,17 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import '../components/member_card.dart';
 
-final List<String> imgList = [
-  'assets/poster_1.png',
-  'assets/poster_2.png',
-  'assets/poster_3.png',
-  'assets/poster_4.png',
-  'assets/poster_5.jpg',
-];
-int currentIndexPage = 0;
-CarouselController carControll = CarouselController();
+// int currentIndexPage = 0;
+// CarouselController carControll = CarouselController();
 
 class ComiteePage extends StatefulWidget {
   const ComiteePage({super.key});
@@ -21,17 +13,8 @@ class ComiteePage extends StatefulWidget {
 }
 
 class _ComiteePageState extends State<ComiteePage> {
-  // String firstName = 'ANIKET', lastName = 'UJGARE';
-  // String designation = 'PRESIDENT';
-  // String phoneNumber1 = '9175197037', phoneNumber2 = '7020155284';
-  // String email = 'aniketujgare@gmail.com';
-  // String website = 'aniketcodes.pythonanywhere.com';
-  // String address1 = 'Opposite S.R.P.F. Camp', address2 = 'Hingoli-431513';
-
   @override
   Widget build(BuildContext context) {
-    String imgLink =
-        'https://lh3.googleusercontent.com/pw/AL9nZEWs3cKY40KLjCEaF4GWEC5u8yuN3KcJnORkk8kG418cobRHY_u1j5cqs02BCMj4iVq8Y2PR48gTeY05X39PBFktDIji0Ca8mhyrWO0GMclXYMUda2Xm-ygTopXCvzlE3HhJ0B_oEKvvAfK0JJNYhNSQhg=w665-h830-no?authuser=0';
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -143,6 +126,3 @@ class _ComiteePageState extends State<ComiteePage> {
     );
   }
 }
-
-String imgLink =
-    'https://lh3.googleusercontent.com/pw/AL9nZEWs3cKY40KLjCEaF4GWEC5u8yuN3KcJnORkk8kG418cobRHY_u1j5cqs02BCMj4iVq8Y2PR48gTeY05X39PBFktDIji0Ca8mhyrWO0GMclXYMUda2Xm-ygTopXCvzlE3HhJ0B_oEKvvAfK0JJNYhNSQhg=w665-h830-no?authuser=0';
