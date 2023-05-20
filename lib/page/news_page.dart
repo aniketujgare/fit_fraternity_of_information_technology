@@ -1,16 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-final List<String> imgList = [
-  'assets/poster_1.png',
-  'assets/poster_2.png',
-  'assets/poster_3.png',
-  'assets/poster_4.png',
-  'assets/poster_5.jpg',
-];
-int currentIndexPage = 0;
-CarouselController carControll = CarouselController();
-
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
 
@@ -36,7 +26,12 @@ class _NewsPageState extends State<NewsPage> {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [],
+        children: [
+          Text(
+            "News",
+            style: TextStyle(fontSize: 100),
+          )
+        ],
       ),
     );
   }
