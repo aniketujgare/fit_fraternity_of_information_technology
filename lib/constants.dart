@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'size_config.dart';
 
 const kPrimaryColor = Colors.blue;
@@ -14,17 +15,21 @@ const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
-final headingStyle = TextStyle(
+// final headingStyle = TextStyle(
+//   fontFamily: GoogleFonts.bebasNeue(),
+//   fontSize: getProportionateScreenWidth(28),
+//   fontWeight: FontWeight.bold,
+//   color: Colors.black,
+//   height: 1.5,
+// );
+
+final headingStyle = GoogleFonts.bebasNeue(
   fontSize: getProportionateScreenWidth(28),
-  fontWeight: FontWeight.bold,
+  // fontWeight: FontWeight.bold,
   color: Colors.black,
-  height: 1.5,
 );
-final formtextstyle= TextStyle(
-  color: Colors.black,
-  fontSize: 16,
-  fontWeight: FontWeight.bold
-);
+final formtextstyle =
+    TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold);
 
 const defaultDuration = Duration(milliseconds: 250);
 
