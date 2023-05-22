@@ -8,12 +8,15 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Sign Up'),
+    return const SafeArea(
+      child: Scaffold(
+        // backgroundColor: Colors.grey[100],
+        // appBar: AppBar(
+        //   centerTitle: true,
+        //   title: const Text('Sign Up'),
+        // ),
+        body: Body(),
       ),
-      body: const Body(),
     );
   }
 }

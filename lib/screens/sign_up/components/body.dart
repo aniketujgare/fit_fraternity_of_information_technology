@@ -1,6 +1,6 @@
+import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_up/components/sign_up_form.dart';
 import 'package:flutter/material.dart';
-
 import '../../../components/social_card.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -14,48 +14,59 @@ class Body extends StatelessWidget {
       width: double.infinity,
       child: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(30)),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(height: SizeConfig.screenHeight! * 0.02),
               Text(
-                'Register Account',
+                'Hi, Welcome Back!',
                 style: headingStyle,
               ),
               const Text(
-                'Complete your details or continue \nwith social media',
-                textAlign: TextAlign.center,
+                'Register below with your details!',
+                textAlign: TextAlign.left,
               ),
               SizedBox(
                   height:
-                      SizeConfig.screenHeight! * 0.07), // 8% of total height
-              const SignUpForm(),
-              SizedBox(height: SizeConfig.screenHeight! * 0.07),
+                      SizeConfig.screenHeight! * 0.03), // 8% of total height
+              SignUpForm(),
+              SizedBox(height: SizeConfig.screenHeight! * 0.09),
+
+              // Text(
+              //   'By continuing your confirm that you agree\nwith our Term and Condition',
+              //   textAlign: TextAlign.center,
+              // )
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SocialCard(
-                    icon: 'assets/icons/google-icon.svg',
-                    press: () {},
+                  Text(
+                    "Already Have an account?",
+                    style: TextStyle(color: Colors.grey[700], fontSize: 16),
                   ),
-                  SocialCard(
-                    icon: 'assets/icons/facebook-2.svg',
-                    press: () {},
+                  const SizedBox(
+                    width: 4,
                   ),
-                  SocialCard(
-                    icon: 'assets/icons/twitter.svg',
-                    press: () {},
-                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, SignForm.routeName);
+                    },
+                    child: Text(
+                      "SIGN IN ",
+                      style: TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
                 ],
               ),
               SizedBox(
-                height: getProportionateScreenHeight(20),
+                height: getProportionateScreenHeight(35),
               ),
-              const Text(
-                'By continuing your confirm that you agree\nwith our Term and Condition',
-                textAlign: TextAlign.center,
-              )
             ],
           ),
         ),

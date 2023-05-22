@@ -10,6 +10,7 @@ class DefaultButton extends StatelessWidget {
     required this.press,
   }) : super(key: key);
   final String text;
+
   final void Function() press;
 
   @override
@@ -21,14 +22,24 @@ class DefaultButton extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: kPrimaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(5),
           ),
         ),
         onPressed: press,
-        child: Text(
-          text,
-          style: TextStyle(
-              fontSize: getProportionateScreenWidth(18), color: Colors.white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.lock_open, color: Colors.white),
+            SizedBox(
+              width: 9,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                  fontSize: getProportionateScreenWidth(18),
+                  color: Colors.white),
+            ),
+          ],
         ),
       ),
     );
@@ -55,7 +66,7 @@ class DefaultButtonAnimated extends StatelessWidget {
           style: TextButton.styleFrom(
             backgroundColor: kPrimaryColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
           onPressed: press,

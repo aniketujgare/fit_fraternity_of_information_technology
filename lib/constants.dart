@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'size_config.dart';
 
-const kPrimaryColor = Color(0xFF000080);
+const kPrimaryColor = Colors.blue;
 const kPrimaryLightColor = Color(0xFF0072BB);
 const kUiBlackColor = Color(0xff2C294A);
 const kPrimaryGradientColor = LinearGradient(
@@ -20,6 +19,11 @@ final headingStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.black,
   height: 1.5,
+);
+final formtextstyle= TextStyle(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.bold
 );
 
 const defaultDuration = Duration(milliseconds: 250);
@@ -136,23 +140,23 @@ MaterialBanner customMaterialBanner(BuildContext context) {
 final defButtonStyle =
     TextStyle(fontSize: getProportionateScreenWidth(18), color: Colors.white);
 
-List<String> kCategory = [
-  'Electronics',
-  'Fashion',
-  'Home',
-  'Beauty',
-  'Appliances',
-  'Toys & Baby',
-  'Food',
-  'Sports'
-];
+// List<String> kCategory = [
+//   'Electronics',
+//   'Fashion',
+//   'Home',
+//   'Beauty',
+//   'Appliances',
+//   'Toys & Baby',
+//   'Food',
+//   'Sports'
+// ];
 
-Map<String, List<String>> kCatAndSubcat = {
-  'Fashion': ['jeans', 'jogger'],
-  'Electronics': ['mobiles', 'pendrive', 'refrigerator'],
-  'Food': ['juice', 'fruits', 'jam'],
-  'Printers': ['Pixma', 'InkJet', 'LaserJet'],
-};
+// Map<String, List<String>> kCatAndSubcat = {
+//   'Fashion': ['jeans', 'jogger'],
+//   'Electronics': ['mobiles', 'pendrive', 'refrigerator'],
+//   'Food': ['juice', 'fruits', 'jam'],
+//   'Printers': ['Pixma', 'InkJet', 'LaserJet'],
+// };
 
 // String price(num amount) {
 //   return '${NumberFormat.simpleCurrency(locale: 'gu').format(amount).replaceAll(RegExp(r"([.]*0+)(?!.*\d)"), '')}';

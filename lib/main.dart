@@ -7,11 +7,12 @@ import 'package:fit_fraternity_of_information_technology/page/image_gallery_page
 import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
+import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
+import 'package:fit_fraternity_of_information_technology/screens/sign_up/sign_up_screen.dart';
 import 'package:fit_fraternity_of_information_technology/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,6 +32,7 @@ void main() async {
       title: 'FIT',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
+          // primary: Colors.grey[200],
           secondary: kPrimaryColor,
         ),
         textTheme: TextTheme(
@@ -39,9 +41,12 @@ void main() async {
           ),
         ),
       ),
-      initialRoute: auth.currentUser != null
-          ? MyHomePage.routeName
-          : SignInScreen.routeName,
+      initialRoute: SignForm.routeName
+      // SignForm.routeName
+      //  auth.currentUser != null
+      //     ? MyHomePage.routeName
+      //     : SignInScreen.routeName,
+      ,
       routes: routes,
       debugShowCheckedModeBanner: false,
     ),

@@ -1,4 +1,6 @@
 import 'package:fit_fraternity_of_information_technology/main.dart';
+import 'package:fit_fraternity_of_information_technology/screens/forgot_password/forgot_password_screen.dart';
+import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/otp_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_out/sign_out_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_up/sign_up_screen.dart';
@@ -9,11 +11,14 @@ import 'screens/sign_in/sign_in_screen.dart';
 // Using name route, all our routes will be available here
 
 final Map<String, WidgetBuilder> routes = {
+  SignForm.routeName: (context) => const SignForm(),
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   SignInScreen.routeName: (context) => const SignInScreen(),
   MyHomePage.routeName: (context) => MyHomePage(),
   SignOutScreen.routeName: (context) => const SignOutScreen(),
   OTPScreen.routeName: (context) => const OTPScreen(),
+  ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
+
   // SignUpScreen.routeName: (context) => SignUpScreen(),
   // CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
   // OtpScreen.routeName: (context) => OtpScreen(),
