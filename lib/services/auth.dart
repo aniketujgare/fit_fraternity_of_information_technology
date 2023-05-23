@@ -1,23 +1,38 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/main.dart';
+import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../screens/sign_in/sign_in_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // register with email & password
-  Future registerInWithEmailAndPassword(
+  Future registerInWithEmailAndPassword(String name, String mobile,
       String email, String password, BuildContext context) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set({
+        'name': name,
+        'email': email,
+        'mobileNumber': mobile,
+      });
+      // await FirebaseFirestore.instance
+      //     .collection("users")
+      //     .doc(userCredential.user!.uid)
+      //     .set({});
+
       if (userCredential.user != null && !userCredential.user!.emailVerified) {
         await userCredential.user!.sendEmailVerification();
         // print('Verification Email has been sent');
         customSnackBar(context, 'Verification Email has been sent');
-        Navigator.pushNamed(context, SignInScreen.routeName);
+        Navigator.pushNamed(context, SignForm.routeName);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

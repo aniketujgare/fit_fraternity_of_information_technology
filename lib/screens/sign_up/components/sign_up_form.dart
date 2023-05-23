@@ -69,7 +69,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       if (_formKey.currentState!.validate()) {
                         //* GO to complete profile page
                         await AuthService().registerInWithEmailAndPassword(
-                            email!, password!, context);
+                            email!, password!, mobile!, name!, context);
 
                         // await FirebaseFirestore.instance
                         //     .collection('users')
@@ -283,23 +283,23 @@ class _SignUpFormState extends State<SignUpForm> {
         SizedBox(height: getProportionateScreenHeight(8)),
         TextFormField(
           keyboardType: TextInputType.name,
-          // onSaved: (newValue) => email = newValue,
-          // onChanged: (value) {
-          //   if (value.isNotEmpty) {
-          //     removeError(error: kEmailNullError);
-          //   } else if (emailValidatorRegExp.hasMatch(value)) {
-          //     removeError(error: kInvalidEmailError);
-          //   }
-          // },
+          onSaved: (newValue) => name = newValue,
+          onChanged: (value) {
+            // if (value.isNotEmpty) {
+            //   removeError(error: kEmailNullError);
+            // } else if (emailValidatorRegExp.hasMatch(value)) {
+            //   removeError(error: kInvalidEmailError);
+            // }
+          },
           // validator: (value) {
           //   if (value == null || value.isEmpty) {
           //     addError(error: kEmailNullError);
-          //     return '';
-          //   } else if (!emailValidatorRegExp.hasMatch(value)) {
-          //     addError(error: kInvalidEmailError);
-          //     return '';
+          //     // return '';
+          //   // } else if (!emailValidatorRegExp.hasMatch(value)) {
+          //   //   addError(error: kInvalidEmailError);
+          //   //   // return '';
           //   }
-          //   email = value;
+          //   name = value;
           //   return null;
           // },
           decoration: InputDecoration(
