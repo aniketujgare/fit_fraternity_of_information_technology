@@ -22,6 +22,7 @@ class AuthService {
         'name': name,
         'email': email,
         'mobileNumber': mobile,
+        'password': password
       });
       // await FirebaseFirestore.instance
       //     .collection("users")
@@ -53,7 +54,9 @@ class AuthService {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       try {
-        if (userCredential.user != null && userCredential.user!.emailVerified) {
+        if (userCredential.user != null && userCredential.user!.emailVerified
+            // &&userCredential.user.email=="dcdscsdcs"?
+            ) {
           Navigator.pushNamed(context, MyHomePage.routeName);
         } else {
           print('not verified');

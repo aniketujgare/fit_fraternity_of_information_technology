@@ -69,7 +69,16 @@ class _SignUpFormState extends State<SignUpForm> {
                       if (_formKey.currentState!.validate()) {
                         //* GO to complete profile page
                         await AuthService().registerInWithEmailAndPassword(
-                            email!, password!, mobile!, name!, context);
+                            // "tushar",
+                            // "78757386666",
+                            // "tugshihhnde@gmail.com",
+                            // "tushar425",
+
+                            name!,
+                            mobile!,
+                            email!,
+                            password!,
+                            context);
 
                         // await FirebaseFirestore.instance
                         //     .collection('users')
@@ -283,8 +292,9 @@ class _SignUpFormState extends State<SignUpForm> {
         SizedBox(height: getProportionateScreenHeight(8)),
         TextFormField(
           keyboardType: TextInputType.name,
-          onSaved: (newValue) => name = newValue,
+          // onSaved: (newValue) => name = newValue,
           onChanged: (value) {
+            name = value;
             // if (value.isNotEmpty) {
             //   removeError(error: kEmailNullError);
             // } else if (emailValidatorRegExp.hasMatch(value)) {
