@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/sign_in/components/sign_form.dart';
+
 class UserPage extends StatelessWidget {
   const UserPage({super.key});
 
@@ -31,7 +33,7 @@ class UserPage extends StatelessWidget {
               onPressed: () {
                 auth.signOut();
                 Navigator.pushNamedAndRemoveUntil(
-                    context, SignInScreen.routeName, (route) => false);
+                    context, SignForm.routeName, (route) => false);
               },
               style: TextButton.styleFrom(
                   elevation: 5,

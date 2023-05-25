@@ -1,80 +1,96 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:video_player/video_player.dart';
 
 enum ImageSourceType { gallery, camera }
 
-class ImagePickerPage extends StatefulWidget {
-  final type;
-  const ImagePickerPage(this.type, {super.key});
 
-  @override
-  ImagePickerPageState createState() => ImagePickerPageState(this.type);
-}
 
-class ImagePickerPageState extends State<ImagePickerPage> {
-  var _image;
-  var imagePicker;
-  var type;
 
-  ImagePickerPageState(this.type);
 
-  @override
-  void initState() {
-    super.initState();
-    imagePicker = ImagePicker();
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          const SizedBox(
-            height: 52,
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () async {
-                var source = type == ImageSourceType.camera
-                    ? ImageSource.camera
-                    : ImageSource.gallery;
-                XFile image = await imagePicker.pickImage(
-                    source: source,
-                    imageQuality: 50,
-                    preferredCameraDevice: CameraDevice.front);
-                setState(() {
-                  _image = File(image.path);
-                });
-              },
-              child: SizedBox(
-                width: 200,
-                height: 200,
-                child: _image != null
-                    ? Image.file(
-                        _image,
-                        width: 200.0,
-                        height: 200.0,
-                        fit: BoxFit.fitHeight,
-                      )
-                    : SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: Icon(
-                          Icons.image,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
+
 
 // class ImagePickerPage extends StatefulWidget {
+//   final type;
+//   const ImagePickerPage(this.type, {super.key});
+
+//   @override
+//   ImagePickerPageState createState() => ImagePickerPageState(this.type);
+// }
+
+// class ImagePickerPageState extends State<ImagePickerPage> {
+//   var _image;
+//   var imagePicker;
+//   var type;
+
+//   ImagePickerPageState(this.type);
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     imagePicker = ImagePicker();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         children: <Widget>[
+//           const SizedBox(
+//             height: 52,
+//           ),
+//           Center(
+//             child: GestureDetector(
+//               onTap: () async {
+//                 var source = type == ImageSourceType.camera
+//                     ? ImageSource.camera
+//                     : ImageSource.gallery;
+//                 XFile image = await imagePicker.pickImage(
+//                     source: source,
+//                     imageQuality: 50,
+//                     preferredCameraDevice: CameraDevice.front);
+//                 setState(() {
+//                   _image = File(image.path);
+//                 });
+//               },
+//               child: SizedBox(
+//                 width: 200,
+//                 height: 200,
+//                 child: _image != null
+//                     ? Image.file(
+//                         _image,
+//                         width: 200.0,
+//                         height: 200.0,
+//                         fit: BoxFit.fitHeight,
+//                       )
+//                     : SizedBox(
+//                         width: 200,
+//                         height: 200,
+//                         child: Icon(
+//                           Icons.image,
+//                           color: Colors.grey[800],
+//                         ),
+//                       ),
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class ImagePickerPage extends StatefulWidget {
+//   static String routeName = '/image';
 //   const ImagePickerPage({Key? key}) : super(key: key);
 
 //   @override

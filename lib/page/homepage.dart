@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '\tAniket ✌',
+                        text: '\ Aniket ✌',
                         style: GoogleFonts.sacramento(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

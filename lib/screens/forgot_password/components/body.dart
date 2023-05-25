@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/custom_suffix_icon.dart';
@@ -9,6 +10,31 @@ import '../../../size_config.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
+
+  // void _resetPassword() async {
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+
+  //   try {
+  //     await _auth.sendPasswordResetEmail(email: email!);
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Password reset email sent. Please check your inbox.'),
+  //       ),
+  //     );
+  //   } catch (error) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Password reset failed. Please try again.'),
+  //       ),
+  //     );
+  //   }
+
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +142,13 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           SizedBox(height: SizeConfig.screenHeight! * 0.05),
           DefaultButton(
               text: 'Reset Password',
-              press: () {
+              press: () async {
                 if (_formKey.currentState!.validate()) {
+                  await FirebaseAuth.instance
+                      .sendPasswordResetEmail(email: email!)
+                      .then((value) {
+                    customSnackBar(context, 'Verification Email has been sent');
+                  });
                   //* Do Whatever you want to do
                 }
               }),

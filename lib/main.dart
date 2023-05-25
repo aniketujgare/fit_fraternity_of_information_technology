@@ -4,6 +4,7 @@ import 'package:fit_fraternity_of_information_technology/constants.dart';
 import 'package:fit_fraternity_of_information_technology/page/comitee_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_gallery_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
 import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
@@ -41,7 +42,9 @@ void main() async {
           ),
         ),
       ),
-      initialRoute: SignForm.routeName
+      initialRoute:
+          // ImagePickerPage.routeName
+          SignForm.routeName
       // SignForm.routeName
       //  auth.currentUser != null
       //     ? MyHomePage.routeName
@@ -102,20 +105,25 @@ class MyHomePageState extends State<MyHomePage> {
               onTap: (idx) => setState(() => index = idx),
             ),
           ),
-          body: SingleChildScrollView(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: GradientColors.snowAgain,
-                ),
+          body:
+              // SingleChildScrollView(
+              //   child:
+              Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: GradientColors.snowAgain,
               ),
+            ),
+            child: Container(
+              height: MediaQuery.of(context).size.height,
               child: IndexedStack(
                 index: index,
                 children: widget.screens,
               ),
             ),
+            // ),
           ),
         ),
       ),

@@ -1,4 +1,7 @@
+// import 'dart:js';
+
 import 'package:fit_fraternity_of_information_technology/main.dart';
+import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
 import 'package:fit_fraternity_of_information_technology/screens/forgot_password/forgot_password_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/otp_screen.dart';
@@ -11,6 +14,7 @@ import 'screens/sign_in/sign_in_screen.dart';
 // Using name route, all our routes will be available here
 
 final Map<String, WidgetBuilder> routes = {
+  // ImagePickerPage.routeName: (context) => const ImagePickerPage(),
   SignForm.routeName: (context) => const SignForm(),
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   SignInScreen.routeName: (context) => const SignInScreen(),
