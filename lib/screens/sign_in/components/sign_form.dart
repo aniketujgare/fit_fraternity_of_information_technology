@@ -7,12 +7,12 @@ import '../../../services/auth.dart';
 import '../../../size_config.dart';
 import '../../forgot_password/forgot_password_screen.dart';
 import '../../sign_up/sign_up_screen.dart';
+import '../../widget/textformfield.dart';
 
 class SignForm extends StatefulWidget {
   static String routeName = '/sign_inemail';
   const SignForm({Key? key}) : super(key: key);
   @override
-  
   _SignFormState createState() => _SignFormState();
 }
 
@@ -44,10 +44,7 @@ class _SignFormState extends State<SignForm> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("vfvfvvfvvf"),
-      // ),
-      // body: Padding(padding: EdgeInsets.symmetric(horizontal: 30)),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -230,22 +227,74 @@ class _SignFormState extends State<SignForm> {
 //   );
 // }
 
+  // Widget buildEmailFormField() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text("Email Address", style: formtextstyle),
+  //       SizedBox(height: getProportionateScreenHeight(8)),
+  //       TextFormField(
+  //         textAlign: TextAlign.start,
+  //         keyboardType: TextInputType.emailAddress,
+  //         onSaved: (newValue) => email = newValue,
+  //         onChanged: (value) {
+  //           if (value.isNotEmpty) {
+  //             removeError(error: kEmailNullError);
+  //           } else if (emailValidatorRegExp.hasMatch(value)) {
+  //             removeError(error: kInvalidEmailError);
+  //           }
+  //         },
+  //         validator: (value) {
+  //           if (value == null || value.isEmpty) {
+  //             addError(error: kEmailNullError);
+  //             // return '';
+  //           } else if (!emailValidatorRegExp.hasMatch(value)) {
+  //             addError(error: kInvalidEmailError);
+  //             // return '';
+  //           }
+  //           return null;
+  //         },
+  //         decoration: InputDecoration(
+  //           prefixIcon: Icon(Icons.email),
+  //           prefixIconColor: Color(0xffDAdb6c1),
+  //           prefixIconConstraints: BoxConstraints(minHeight: 20, minWidth: 50),
+
+  //           errorBorder: InputBorder.none,
+  //           enabledBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(15),
+  //               borderSide: BorderSide(color: Colors.grey.shade400)),
+  //           focusedBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(15),
+  //               borderSide: BorderSide(color: Colors.grey.shade400)),
+  //           fillColor: Colors.white,
+  //           filled: true,
+  //           // labelText: 'Email',
+  //           hintText: 'john@email.com',
+  //           hintStyle: TextStyle(color: Colors.grey[500]),
+  //           // floatingLabelBehavior: FloatingLabelBehavior.always,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
   Widget buildEmailFormField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Email Address", style: formtextstyle),
         SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormField(
-          keyboardType: TextInputType.emailAddress,
-          onSaved: (newValue) => email = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
+        TextFormFieldPulse(
+          hintText: 'john@email.com',
+          icon: const Icon(Icons.email),
+          onchanged: (value) {
+            if (value!.isNotEmpty) {
               removeError(error: kEmailNullError);
             } else if (emailValidatorRegExp.hasMatch(value)) {
               removeError(error: kInvalidEmailError);
             }
           },
+          onsaved: (newValue) => email = newValue,
           validator: (value) {
             if (value == null || value.isEmpty) {
               addError(error: kEmailNullError);
@@ -256,23 +305,7 @@ class _SignFormState extends State<SignForm> {
             }
             return null;
           },
-          decoration: InputDecoration(
-            errorBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            fillColor: Colors.white,
-            filled: true,
-            // labelText: 'Email',
-            hintText: 'john@email.com',
-            hintStyle: TextStyle(color: Colors.grey[500]),
-            // floatingLabelBehavior: FloatingLabelBehavior.always,
-            suffixIcon: const CustomSuffixIcon(
-              svgIcon: 'assets/icons/Mail.svg',
-            ),
-          ),
-        ),
+        )
       ],
     );
   }
@@ -286,17 +319,19 @@ class _SignFormState extends State<SignForm> {
           style: formtextstyle,
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormField(
+        TextFormFieldPulse(
           obscureText: true,
-          onSaved: (newValue) => password = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
+          hintText: '8+ characters required',
+          icon: Icon(Icons.password),
+          onchanged: (value) {
+            if (value!.isNotEmpty) {
               removeError(error: kPassNullError);
             } else if (value.length >= 8) {
               removeError(error: kShortPassError);
             }
             return;
           },
+          onsaved: (newValue) => password = newValue,
           validator: (value) {
             if (value == null || value.isEmpty) {
               addError(error: kPassNullError);
@@ -307,23 +342,48 @@ class _SignFormState extends State<SignForm> {
             }
             return null;
           },
-          decoration: InputDecoration(
-            errorBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            fillColor: Colors.white,
-            filled: true,
-            // labelText: 'Password',
-            hintText: '8+ characters required',
-            hintStyle: TextStyle(color: Colors.grey[500]),
-            // floatingLabelBehavior: FloatingLabelBehavior.always,
-            suffixIcon: const CustomSuffixIcon(
-              svgIcon: 'assets/icons/Lock.svg',
-            ),
-          ),
-        ),
+        )
+
+        // TextFormField(
+        //   obscureText: true,
+        //   onSaved: (newValue) => password = newValue,
+        //   onChanged:
+        // (value) {
+        //     if (value.isNotEmpty) {
+        //       removeError(error: kPassNullError);
+        //     } else if (value.length >= 8) {
+        //       removeError(error: kShortPassError);
+        //     }
+        //     return;
+        //   },
+        //   validator:
+        // (value) {
+        //     if (value == null || value.isEmpty) {
+        //       addError(error: kPassNullError);
+        //       // return '';
+        //     } else if (value.length < 8) {
+        //       addError(error: kShortPassError);
+        //       // return '';
+        //     }
+        //     return null;
+        //   },
+        //   decoration: InputDecoration(
+        //     errorBorder: InputBorder.none,
+        //     enabledBorder: OutlineInputBorder(
+        //         borderSide: BorderSide(color: Colors.grey.shade400)),
+        //     focusedBorder: OutlineInputBorder(
+        //         borderSide: BorderSide(color: Colors.grey.shade400)),
+        //     fillColor: Colors.white,
+        //     filled: true,
+        //     // labelText: 'Password',
+        //     hintText: '8+ characters required',
+        //     hintStyle: TextStyle(color: Colors.grey[500]),
+        //     // floatingLabelBehavior: FloatingLabelBehavior.always,
+        //     suffixIcon: const CustomSuffixIcon(
+        //       svgIcon: 'assets/icons/Lock.svg',
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

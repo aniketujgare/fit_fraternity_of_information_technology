@@ -29,7 +29,9 @@ class AuthService {
       //     .doc(userCredential.user!.uid)
       //     .set({});
 
-      if (userCredential.user != null && !userCredential.user!.emailVerified) {
+      if (userCredential.user != null
+          //  && !userCredential.user!.emailVerified
+          ) {
         await userCredential.user!.sendEmailVerification();
         // print('Verification Email has been sent');
         customSnackBar(context, 'Verification Email has been sent');
@@ -54,7 +56,8 @@ class AuthService {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       try {
-        if (userCredential.user != null && userCredential.user!.emailVerified
+        if (userCredential.user != null
+            // && userCredential.user!.emailVerified
             // &&userCredential.user.email=="dcdscsdcs"?
             ) {
           Navigator.pushNamed(context, MyHomePage.routeName);
