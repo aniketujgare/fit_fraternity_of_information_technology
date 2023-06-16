@@ -25,30 +25,38 @@ class _NewsPageState extends State<NewsPage> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.grey[900]),
       // ignore: prefer_interpolation_to_compose_strings
-      body: Column(children: [
-        FutureBuilder(
-          future: getuser(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Text(
-                "logged in as " + snapshot.requireData,
-              );
-            } else {
-              return Text('User!');
-            }
-          },
-        ),
-        Row(
-          children: [
-            Expanded(
-                child: TextField(
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white))),
-            ))
-          ],
-        )
-      ]),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(children: [
+          FutureBuilder(
+            future: getuser(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  "logged in as " + snapshot.requireData,
+                );
+              } else {
+                return Text('User!');
+              }
+            },
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: TextField(
+                controller: TextEditingController(),
+                decoration: InputDecoration(
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white))),
+              ))
+            ],
+          )
+        ]),
+      ),
     );
     // Container(
     //   decoration: const BoxDecoration(

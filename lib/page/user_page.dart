@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../screens/sign_in/components/sign_form.dart';
 
 class UserPage extends StatelessWidget {
@@ -24,7 +23,11 @@ class UserPage extends StatelessWidget {
                 color: Colors.black,
               )),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                auth.signOut();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, SignForm.routeName, (route) => false);
+              },
               icon: const Icon(
                 Icons.logout,
                 color: Colors.black,
@@ -33,8 +36,6 @@ class UserPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-
-          
           CircleAvatar(
             radius: 80,
             child: Icon(
@@ -67,9 +68,9 @@ class UserPage extends StatelessWidget {
     //         height: 45,
     //         child: TextButton(
     //           onPressed: () {
-    //             auth.signOut();
-    //             Navigator.pushNamedAndRemoveUntil(
-    //                 context, SignForm.routeName, (route) => false);
+    // auth.signOut();
+    // Navigator.pushNamedAndRemoveUntil(
+    //     context, SignForm.routeName, (route) => false);
     //           },
     //           style: TextButton.styleFrom(
     // elevation: 5,
