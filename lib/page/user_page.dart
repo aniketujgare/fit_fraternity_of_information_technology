@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
+import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../main.dart';
-import '../screens/sign_in/components/sign_form.dart';
+import '../screens/sign_in/sign_in.dart';
 import '../size_config.dart';
 import '../widget/update_profile_button.dart';
 
@@ -46,7 +45,7 @@ class UserPage extends StatelessWidget {
               onPressed: () {
                 auth.signOut();
                 Navigator.pushNamedAndRemoveUntil(
-                    context, SignForm.routeName, (route) => false);
+                    context, Signin.routeName, (route) => false);
               },
               icon: const Icon(
                 Icons.logout,
@@ -62,7 +61,7 @@ class UserPage extends StatelessWidget {
             const CircleAvatar(
               backgroundImage: NetworkImage(
                   "https://images.unsplash.com/photo-1630568667432-0fa3609f0a32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"),
-              radius: 80,
+              radius: 70,
               // child: Icon(
               // // Icons.person,
               // size: 90,
@@ -258,7 +257,8 @@ class UserPage extends StatelessWidget {
                           Expanded(
                             child: IconButton(
                                 alignment: Alignment.topRight,
-                                onPressed: () {},
+                                onPressed: () => Navigator.pushNamed(
+                                    context, ChangePassword.routeName),
                                 icon: Icon(Icons.arrow_forward_ios)),
                           )
                         ],

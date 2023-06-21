@@ -1,17 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/main.dart';
-import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 // import '../screens/sign_in/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../screens/sign_in/sign_in.dart';
+
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // register with email & password
-  Future registerInWithEmailAndPassword(String name, String mobile,
-      String email, String password, BuildContext context) async {
+  Future registerInWithEmailAndPassword(
+      String name,
+      String mobile,
+      // String dateofbirth,
+      String email,
+      String prn,
+      String password,
+      BuildContext context) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -21,7 +28,9 @@ class AuthService {
           .set({
         'name': name,
         'email': email,
+        // 'Date of Birth': dateofbirth,
         'mobileNumber': mobile,
+        'PRN': prn,
         'password': password
       });
       // await FirebaseFirestore.instance
@@ -29,13 +38,11 @@ class AuthService {
       //     .doc(userCredential.user!.uid)
       //     .set({});
 
-      if (userCredential.user != null
-          //  && !userCredential.user!.emailVerified
-          ) {
+      if (userCredential.user != null && !userCredential.user!.emailVerified) {
         await userCredential.user!.sendEmailVerification();
-        // print('Verification Email has been sent');
-        // customSnackBar(context, 'Verification Email has been sent');
-        Navigator.pushNamed(context, SignForm.routeName);
+        print('Verification Email has been sent');
+        customSnackBar(context, 'Verification Email has been sent');
+        Navigator.pushNamed(context, Signin.routeName);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -56,9 +63,8 @@ class AuthService {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       try {
-        if (userCredential.user != null
-            // && userCredential.user!.emailVerified
-            // &&userCredential.user.email=="dcdscsdcs"?
+        if (userCredential.user != null && userCredential.user!.emailVerified
+            // &&userCredential.user?.email=="dcdscsdcs"?
             ) {
           Navigator.pushNamed(context, MyHomePage.routeName);
         } else {
@@ -87,7 +93,7 @@ class AuthService {
   Future<void> signOut(BuildContext context) async {
     await _auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const SignForm()));
+        context, MaterialPageRoute(builder: (context) => const Signin()));
   }
 
 // //*Seller Section

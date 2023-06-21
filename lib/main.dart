@@ -8,7 +8,7 @@ import 'package:fit_fraternity_of_information_technology/page/image_picker.dart'
 import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
-import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
+import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in.dart';
 // import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_up/sign_up_screen.dart';
 import 'package:fit_fraternity_of_information_technology/size_config.dart';
@@ -42,8 +42,8 @@ void main() async {
           ),
         ),
       ),
-      initialRoute: SignForm.routeName,
-      home: auth.currentUser != null ? MyHomePage() : const SignForm(),
+      initialRoute: Signin.routeName,
+      home: auth.currentUser != null ? MyHomePage() : const Signin(),
       routes: routes,
       debugShowCheckedModeBanner: false,
     ),
