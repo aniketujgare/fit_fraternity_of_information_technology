@@ -5,13 +5,14 @@ import 'package:fit_fraternity_of_information_technology/page/comitee_page.dart'
 import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_gallery_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
-import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
+// import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
-// import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
+// import 'package:fit_fraternity_of_information_technol  ogy/screens/sign_in/sign_in_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_up/sign_up_screen.dart';
 import 'package:fit_fraternity_of_information_technology/size_config.dart';
+import 'package:fit_fraternity_of_information_technology/wall/news_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 import 'package:firebase_core/firebase_core.dart';

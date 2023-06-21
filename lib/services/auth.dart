@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/main.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../constants.dart';
 // import '../screens/sign_in/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,6 +44,7 @@ class AuthService {
       } else if (e.code == 'email-already-in-use') {
         // print('The account already exists for that email.');
         customSnackBar(context, 'The account already exists for that email! ');
+        // Get.snackbar("hi", 'The account already exists for that email! ');
       }
     } catch (e) {
       print(e);
@@ -79,6 +81,7 @@ class AuthService {
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
         customSnackBar(context, 'Wrong password provided for that user!');
+        // Get.snackbar('hi', 'Wrong password provided for that user!');
       }
     }
   }
