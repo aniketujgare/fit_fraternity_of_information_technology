@@ -80,10 +80,13 @@ class SignFormState extends State<SignForm> {
             height: getProportionateScreenHeight(20),
           ),
           isLoading
-              ? DefaultButtonAnimated(press: () {})
+              ? DefaultButtonAnimated(
+                  ontap: () {},
+                  fontSize: 20,
+                )
               : DefaultButton(
                   text: 'Continue',
-                  press: () async {
+                  onTap: () async {
                     //set animate bool
                     if (isLoading) return;
                     setState(() => isLoading = true);
@@ -99,7 +102,9 @@ class SignFormState extends State<SignForm> {
                     }
 
                     setState(() => isLoading = false); //animation bool
-                  }),
+                  },
+                  fontSize: 25,
+                ),
         ],
       ),
     );

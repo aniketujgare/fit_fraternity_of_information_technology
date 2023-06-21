@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fit_fraternity_of_information_technology/constants.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
 import '../screens/sign_in/components/sign_form.dart';
 import '../size_config.dart';
+import '../widget/update_profile_button.dart';
 
 class UserPage extends StatelessWidget {
   static String routeName = '/User_page';
@@ -66,7 +69,22 @@ class UserPage extends StatelessWidget {
               // color: Colors.black,
               // ),
             ),
-            RichText(text: const TextSpan(text: 'Tushar')),
+            StreamBuilder<String>(
+              stream: getUserStream(),
+              builder: (context, snapshot) {
+                return RichText(
+                  text: TextSpan(
+                      text: snapshot.hasData ? ' ${snapshot.data} ' : '',
+                      style: textStyle.copyWith(
+                          color: Colors.black, fontSize: 25)),
+                );
+              },
+            ),
+            // RichText(
+            //     text: TextSpan(
+            //         text: 'Tushar',
+            //         style:
+            //             textStyle.copyWith(color: Colors.black, fontSize: 25))),
             const SizedBox(
               height: 20,
             ),

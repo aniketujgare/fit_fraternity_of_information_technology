@@ -1,3 +1,4 @@
+import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:flutter/material.dart';
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
@@ -57,10 +58,13 @@ class _SignUpFormState extends State<SignUpForm> {
             FormError(errors: errors!),
             SizedBox(height: getProportionateScreenHeight(40)),
             isLoading
-                ? DefaultButtonAnimated(press: () {})
+                ? DefaultButtonAnimated(
+                    ontap: () {},
+                    fontSize: 20,
+                  )
                 : DefaultButton(
                     text: 'SIGN UP',
-                    press: () async {
+                    onTap: () async {
                       //set animate bool
                       if (isLoading) return;
                       setState(() => isLoading = true);
@@ -88,45 +92,12 @@ class _SignUpFormState extends State<SignUpForm> {
                         //     context, CompleteProfileScreen.routeName);
                       }
                       setState(() => isLoading = false); //animation bool
-                    }),
+                    },
+                    fontSize: 25,
+                  ),
           ],
         ));
   }
-
-  // TextFormField buildConfPasswordPasswordFormField() {
-  //   return TextFormField(
-  //     obscureText: true,
-  //     onSaved: (newValue) => confirmPassword = newValue,
-  //     onChanged: (value) {
-  //       if (password == confirmPassword) {
-  //         removeError(error: kMatchPassError);
-  //       }
-  //       return;
-  //     },
-  //     validator: (value) {
-  //       if (value == null || value.isEmpty) {
-  //       } else if (password != value) {
-  //         addError(error: kMatchPassError);
-  //       }
-  //       return null;
-  //     },
-  //     decoration: InputDecoration(
-  //       errorBorder: InputBorder.none,
-  //       enabledBorder: const OutlineInputBorder(
-  //           borderSide: BorderSide(color: Colors.white)),
-  //       focusedBorder: OutlineInputBorder(
-  //           borderSide: BorderSide(color: Colors.grey.shade400)),
-  //       fillColor: Colors.grey.shade200,
-  //       filled: true,
-  //       labelText: 'Connfirm Password',
-  //       hintText: 'Re-Enter your password',
-  //       // floatingLabelBehavior: FloatingLabelBehavior.always,
-  //       suffixIcon: CustomSuffixIcon(
-  //         svgIcon: 'assets/icons/Lock.svg',
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget buildPasswordFormField() {
     return Column(
@@ -137,18 +108,9 @@ class _SignUpFormState extends State<SignUpForm> {
           style: formtextstyle,
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormField(
+        TextFormFieldPulse(
           obscureText: true,
-          onSaved: (newValue) => password = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
-              removeError(error: kPassNullError);
-            } else if (value.length >= 8) {
-              removeError(error: kShortPassError);
-            }
-            password = value;
-            return;
-          },
+          hintText: '8+ characters required',
           validator: (value) {
             if (value == null || value.isEmpty) {
               addError(error: kPassNullError);
@@ -159,24 +121,18 @@ class _SignUpFormState extends State<SignUpForm> {
             }
             return null;
           },
-          decoration: InputDecoration(
-            errorBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            // fillColor: Colors.grey.shade200,
-            fillColor: Colors.white,
-            filled: true,
-            // labelText: 'Password',
-            hintText: '8+ characters required',
-            // floatingLabelBehavior: FloatingLabelBehavior.always,
-            // suffixIcon: Icon(Icons.abc_outlined)
-            // CustomSuffixIcon(
-            //   svgIcon: 'assets/icons/Lock.svg',
-            // ),
-          ),
-        ),
+          icon: Icon(Icons.password),
+          onsaved: (newValue) => password = newValue,
+          onchanged: (value) {
+            if (value!.isNotEmpty) {
+              removeError(error: kPassNullError);
+            } else if (value.length >= 8) {
+              removeError(error: kShortPassError);
+            }
+            password = value;
+            return;
+          },
+        )
       ],
     );
   }
@@ -190,11 +146,13 @@ class _SignUpFormState extends State<SignUpForm> {
           style: formtextstyle,
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormField(
-          keyboardType: TextInputType.emailAddress,
-          onSaved: (newValue) => email = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
+        TextFormFieldPulse(
+          keyboardtype: TextInputType.emailAddress,
+          hintText: 'john@email.com',
+          icon: Icon(Icons.email),
+          onsaved: (newValue) => email = newValue,
+          onchanged: (value) {
+            if (value!.isNotEmpty) {
               removeError(error: kEmailNullError);
             } else if (emailValidatorRegExp.hasMatch(value)) {
               removeError(error: kInvalidEmailError);
@@ -211,22 +169,7 @@ class _SignUpFormState extends State<SignUpForm> {
             email = value;
             return null;
           },
-          decoration: InputDecoration(
-            errorBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            fillColor: Colors.white,
-            filled: true,
-            // labelText: 'Email',
-            hintText: 'john@email.com',
-            // floatingLabelBehavior: FloatingLabelBehavior.always,/
-            suffixIcon: CustomSuffixIcon(
-              svgIcon: 'assets/icons/Mail.svg',
-            ),
-          ),
-        ),
+        )
       ],
     );
   }
@@ -240,43 +183,26 @@ class _SignUpFormState extends State<SignUpForm> {
           style: formtextstyle,
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormField(
-          keyboardType: TextInputType.phone,
-          onSaved: (newValue) => mobile = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
+        TextFormFieldPulse(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              addError(error: kPhoneNumberNullError);
+            }
+            mobile = value;
+            return null;
+          },
+          keyboardtype: TextInputType.phone,
+          hintText: 'Enter your mobile',
+          icon: Icon(Icons.phone_enabled_outlined),
+          onsaved: (newValue) => mobile = newValue,
+          onchanged: (value) {
+            if (value!.isNotEmpty) {
               removeError(error: kEmailNullError);
             } else if (emailValidatorRegExp.hasMatch(value)) {
               removeError(error: kInvalidEmailError);
             }
           },
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              addError(error: kPhoneNumberNullError);
-              // return '';
-              // } else if (!emailValidatorRegExp.hasMatch(value)) {
-              //   addError(error: kInvalidEmailError);
-              //   // return '';
-            }
-            mobile = value;
-            return null;
-          },
-          decoration: InputDecoration(
-            errorBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            fillColor: Colors.white,
-            filled: true,
-            // labelText: 'mobie',
-            hintText: 'Enter your mobile',
-            // floatingLabelBehavior: FloatingLabelBehavior.always,/
-            suffixIcon: CustomSuffixIcon(
-              svgIcon: 'assets/icons/Mail.svg',
-            ),
-          ),
-        ),
+        )
       ],
     );
   }
@@ -290,44 +216,14 @@ class _SignUpFormState extends State<SignUpForm> {
           style: formtextstyle,
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormField(
-          keyboardType: TextInputType.name,
-          // onSaved: (newValue) => name = newValue,
-          onChanged: (value) {
+        TextFormFieldPulse(
+          hintText: 'john',
+          icon: Icon(Icons.person_2_sharp),
+          onsaved: (newValue) => name = newValue,
+          onchanged: (value) {
             name = value;
-            // if (value.isNotEmpty) {
-            //   removeError(error: kEmailNullError);
-            // } else if (emailValidatorRegExp.hasMatch(value)) {
-            //   removeError(error: kInvalidEmailError);
-            // }
           },
-          // validator: (value) {
-          //   if (value == null || value.isEmpty) {
-          //     addError(error: kEmailNullError);
-          //     // return '';
-          //   // } else if (!emailValidatorRegExp.hasMatch(value)) {
-          //   //   addError(error: kInvalidEmailError);
-          //   //   // return '';
-          //   }
-          //   name = value;
-          //   return null;
-          // },
-          decoration: InputDecoration(
-            errorBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)),
-            fillColor: Colors.white,
-            filled: true,
-            // labelText: 'Name',
-            hintText: '@ john',
-            // floatingLabelBehavior: FloatingLabelBehavior.always,/
-            suffixIcon: CustomSuffixIcon(
-              svgIcon: 'assets/icons/Mail.svg',
-            ),
-          ),
-        ),
+        )
       ],
     );
   }

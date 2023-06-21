@@ -4,20 +4,22 @@ class TextFormFieldPulse extends StatelessWidget {
   final String hintText;
   final Widget icon;
   final bool obscureText;
+  final TextInputType? keyboardtype;
   final Function(String?)? onsaved;
   final Function(String?)? onchanged;
   final String? Function(String?)? validator;
   // final TextEditingController textFieldController;
-  const TextFormFieldPulse({
-    super.key,
+  TextFormFieldPulse({
+    Key? key,
     required this.hintText,
     required this.icon,
     required this.onsaved,
     required this.onchanged,
-    required this.validator,
+    this.validator,
+    this.keyboardtype,
     this.obscureText = false,
     // required this.textFieldController,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class TextFormFieldPulse extends StatelessWidget {
       validator: validator,
       onChanged: onchanged,
       obscureText: obscureText,
+      keyboardType: keyboardtype,
 
       // controller: textFieldController,
       textAlign: TextAlign.start,

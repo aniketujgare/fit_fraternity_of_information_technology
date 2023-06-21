@@ -10,11 +10,7 @@ class SignUpScreen extends StatelessWidget {
     SizeConfig().init(context);
     return const SafeArea(
       child: Scaffold(
-        // backgroundColor: Colors.grey[100],
-        // appBar: AppBar(
-        //   centerTitle: true,
-        //   title: const Text('Sign Up'),
-        // ),
+        backgroundColor: Colors.white,
         body: Body(),
       ),
     );

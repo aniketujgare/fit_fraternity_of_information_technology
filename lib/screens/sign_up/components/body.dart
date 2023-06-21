@@ -33,7 +33,13 @@ class Body extends StatelessWidget {
                   height:
                       SizeConfig.screenHeight! * 0.03), // 8% of total height
               SignUpForm(),
-              SizedBox(height: SizeConfig.screenHeight! * 0.09),
+              // Flex(
+              //   direction: Axis.vertical,
+              //   verticalDirection: VerticalDirection.down,
+              // ),
+              Flex(direction: Axis.vertical, children: [
+                SizedBox(height: SizeConfig.screenHeight! * 0.09)
+              ]),
 
               // Text(
               //   'By continuing your confirm that you agree\nwith our Term and Condition',

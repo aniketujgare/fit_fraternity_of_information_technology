@@ -14,7 +14,11 @@ const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
-
+const textStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontFamily: 'Outfit',
+    fontWeight: FontWeight.w500);
 // final headingStyle = TextStyle(
 //   fontFamily: GoogleFonts.bebasNeue(),
 //   fontSize: getProportionateScreenWidth(28),

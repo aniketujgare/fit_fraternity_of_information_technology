@@ -141,17 +141,19 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           FormError(errors: errors!),
           SizedBox(height: SizeConfig.screenHeight! * 0.05),
           DefaultButton(
-              text: 'Reset Password',
-              press: () async {
-                if (_formKey.currentState!.validate()) {
-                  await FirebaseAuth.instance
-                      .sendPasswordResetEmail(email: email!)
-                      .then((value) {
-                    customSnackBar(context, 'Verification Email has been sent');
-                  });
-                  //* Do Whatever you want to do
-                }
-              }),
+            text: 'Reset Password',
+            onTap: () async {
+              if (_formKey.currentState!.validate()) {
+                await FirebaseAuth.instance
+                    .sendPasswordResetEmail(email: email!)
+                    .then((value) {
+                  customSnackBar(context, 'Verification Email has been sent');
+                });
+                //* Do Whatever you want to do
+              }
+            },
+            fontSize: 25,
+          ),
           SizedBox(height: SizeConfig.screenHeight! * 0.1),
         ],
       ),

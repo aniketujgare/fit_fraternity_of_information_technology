@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
 import '../../../constants.dart';
@@ -102,10 +101,11 @@ class _SignFormState extends State<SignForm> {
                             height: getProportionateScreenHeight(20),
                           ),
                           isLoading
-                              ? DefaultButtonAnimated(press: () {})
+                              ? DefaultButtonAnimated(ontap: () {}, fontSize: 20,)
                               : DefaultButton(
+                                  height: 50,
                                   text: 'Continue',
-                                  press: () async {
+                                  onTap: () async {
                                     //set animate bool
                                     if (isLoading) return;
                                     setState(() => isLoading = true);
@@ -123,10 +123,11 @@ class _SignFormState extends State<SignForm> {
 
                                     setState(() =>
                                         isLoading = false); //animation bool
-                                  }),
+                                  },
+                                  fontSize: getProportionateScreenWidth(18),
+                                ),
                         ],
                       )),
-                  // SizedBox(height: SizeConfig.screenHeight! * 0.18),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -160,123 +161,6 @@ class _SignFormState extends State<SignForm> {
       ),
     );
   }
-
-// Form(
-//     key: _formKey,
-//     child: Column(
-//       children: [
-//         buildEmailFormField(),
-//         SizedBox(
-//           height: getProportionateScreenHeight(30),
-//         ),
-//         buildPasswordFormField(),
-//         SizedBox(
-//           height: getProportionateScreenHeight(30),
-//         ),
-//         Row(
-//           children: [
-//             Checkbox(
-//                 checkColor: kPrimaryColor,
-//                 value: remember,
-//                 onChanged: (value) {
-//                   setState(() {
-//                     remember = value!;
-//                   });
-//                 }),
-//             const Text('Remember me'),
-//             const Spacer(),
-//             GestureDetector(
-//               onTap: () => Navigator.popAndPushNamed(
-//                   context, ForgotPasswordScreen.routeName),
-//               child: const Text(
-//                 'Forgot Password',
-//                 style: TextStyle(decoration: TextDecoration.underline),
-//               ),
-//             ),
-//           ],
-//         ),
-//         FormError(
-//           errors: errors!,
-//         ),
-//         SizedBox(
-//           height: getProportionateScreenHeight(20),
-//         ),
-//         isLoading
-//             ? DefaultButtonAnimated(press: () {})
-//             : DefaultButton(
-//                 text: 'Continue',
-//                 press: () async {
-//                   //set animate bool
-//                   if (isLoading) return;
-//                   setState(() => isLoading = true);
-
-//                   //set animate bool
-
-//                   if (_formKey.currentState!.validate()) {
-//                     _formKey.currentState!.save();
-
-//                     //* if all are valid then go to success screen
-//                     await AuthService().signInWithEmailAndPassword(
-//                         email!, password!, context);
-//                   }
-
-//                   setState(() => isLoading = false); //animation bool
-//                 }),
-//       ],
-//     ),
-//   );
-// }
-
-  // Widget buildEmailFormField() {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Text("Email Address", style: formtextstyle),
-  //       SizedBox(height: getProportionateScreenHeight(8)),
-  //       TextFormField(
-  //         textAlign: TextAlign.start,
-  //         keyboardType: TextInputType.emailAddress,
-  //         onSaved: (newValue) => email = newValue,
-  //         onChanged: (value) {
-  //           if (value.isNotEmpty) {
-  //             removeError(error: kEmailNullError);
-  //           } else if (emailValidatorRegExp.hasMatch(value)) {
-  //             removeError(error: kInvalidEmailError);
-  //           }
-  //         },
-  //         validator: (value) {
-  //           if (value == null || value.isEmpty) {
-  //             addError(error: kEmailNullError);
-  //             // return '';
-  //           } else if (!emailValidatorRegExp.hasMatch(value)) {
-  //             addError(error: kInvalidEmailError);
-  //             // return '';
-  //           }
-  //           return null;
-  //         },
-  //         decoration: InputDecoration(
-  //           prefixIcon: Icon(Icons.email),
-  //           prefixIconColor: Color(0xffDAdb6c1),
-  //           prefixIconConstraints: BoxConstraints(minHeight: 20, minWidth: 50),
-
-  //           errorBorder: InputBorder.none,
-  //           enabledBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.circular(15),
-  //               borderSide: BorderSide(color: Colors.grey.shade400)),
-  //           focusedBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.circular(15),
-  //               borderSide: BorderSide(color: Colors.grey.shade400)),
-  //           fillColor: Colors.white,
-  //           filled: true,
-  //           // labelText: 'Email',
-  //           hintText: 'john@email.com',
-  //           hintStyle: TextStyle(color: Colors.grey[500]),
-  //           // floatingLabelBehavior: FloatingLabelBehavior.always,
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
 
   Widget buildEmailFormField() {
     return Column(
@@ -343,47 +227,6 @@ class _SignFormState extends State<SignForm> {
             return null;
           },
         )
-
-        // TextFormField(
-        //   obscureText: true,
-        //   onSaved: (newValue) => password = newValue,
-        //   onChanged:
-        // (value) {
-        //     if (value.isNotEmpty) {
-        //       removeError(error: kPassNullError);
-        //     } else if (value.length >= 8) {
-        //       removeError(error: kShortPassError);
-        //     }
-        //     return;
-        //   },
-        //   validator:
-        // (value) {
-        //     if (value == null || value.isEmpty) {
-        //       addError(error: kPassNullError);
-        //       // return '';
-        //     } else if (value.length < 8) {
-        //       addError(error: kShortPassError);
-        //       // return '';
-        //     }
-        //     return null;
-        //   },
-        //   decoration: InputDecoration(
-        //     errorBorder: InputBorder.none,
-        //     enabledBorder: OutlineInputBorder(
-        //         borderSide: BorderSide(color: Colors.grey.shade400)),
-        //     focusedBorder: OutlineInputBorder(
-        //         borderSide: BorderSide(color: Colors.grey.shade400)),
-        //     fillColor: Colors.white,
-        //     filled: true,
-        //     // labelText: 'Password',
-        //     hintText: '8+ characters required',
-        //     hintStyle: TextStyle(color: Colors.grey[500]),
-        //     // floatingLabelBehavior: FloatingLabelBehavior.always,
-        //     suffixIcon: const CustomSuffixIcon(
-        //       svgIcon: 'assets/icons/Lock.svg',
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }
