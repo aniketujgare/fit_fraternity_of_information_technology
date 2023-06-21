@@ -9,7 +9,7 @@ import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
-import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
+// import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_up/sign_up_screen.dart';
 import 'package:fit_fraternity_of_information_technology/size_config.dart';
 import 'package:flutter/material.dart';
@@ -42,14 +42,8 @@ void main() async {
           ),
         ),
       ),
-      initialRoute:
-          // ImagePickerPage.routeName
-          SignForm.routeName
-      // SignForm.routeName
-      //  auth.currentUser != null
-      //     ? MyHomePage.routeName
-      //     : SignInScreen.routeName,
-      ,
+      initialRoute: SignForm.routeName,
+      home: auth.currentUser != null ? MyHomePage() : const SignForm(),
       routes: routes,
       debugShowCheckedModeBanner: false,
     ),
@@ -60,7 +54,7 @@ void main() async {
 
 class MyHomePage extends StatefulWidget {
   static String routeName = '/my_home';
-  MyHomePage({super.key});
+  MyHomePage({Key? key}) : super(key: key);
   final screens = [
     const ComiteePage(),
     const NewsPage(),
@@ -105,10 +99,7 @@ class MyHomePageState extends State<MyHomePage> {
               onTap: (idx) => setState(() => index = idx),
             ),
           ),
-          body:
-              // SingleChildScrollView(
-              //   child:
-              Container(
+          body: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,

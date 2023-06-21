@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../screens/sign_in/components/sign_form.dart';
 import '../size_config.dart';
 
 class UserPage extends StatelessWidget {
+  static String routeName = '/User_page';
   const UserPage({super.key});
 
   @override
@@ -30,7 +33,8 @@ class UserPage extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.pushNamed(context, UpdateUserPage.routeName),
               icon: const Icon(
                 Icons.border_color,
                 color: Colors.black,
@@ -64,7 +68,7 @@ class UserPage extends StatelessWidget {
             ),
             RichText(text: const TextSpan(text: 'Tushar')),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             Container(
               decoration: BoxDecoration(
@@ -155,7 +159,53 @@ class UserPage extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 15, color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white),
+              height: getProportionateScreenHeight(60),
+              width: getProportionateScreenWidth(330),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.wallet_membership, color: Colors.red),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            "MemberShip",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          // SizedBox(
+                          //   width: 70,
+                          // ),
+                          // Icon(Icons.arrow_forward_ios)
+                          Expanded(
+                            child: IconButton(
+                                alignment: Alignment.topRight,
+                                onPressed: () {},
+                                icon: Icon(Icons.arrow_forward_ios)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 15,
             ),
             Container(
               decoration: BoxDecoration(

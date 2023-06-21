@@ -2,7 +2,7 @@ import 'package:fit_fraternity_of_information_technology/constants.dart';
 import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
-import '../screens/sign_in/otp_screen.dart';
+// import '../screens/sign_in/otp_screen.dart';
 
 class ImageGalleryPage extends StatelessWidget {
   const ImageGalleryPage({super.key});

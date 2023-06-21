@@ -3,7 +3,7 @@ import 'package:fit_fraternity_of_information_technology/main.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
-import '../screens/sign_in/sign_in_screen.dart';
+// import '../screens/sign_in/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
@@ -34,7 +34,7 @@ class AuthService {
           ) {
         await userCredential.user!.sendEmailVerification();
         // print('Verification Email has been sent');
-        customSnackBar(context, 'Verification Email has been sent');
+        // customSnackBar(context, 'Verification Email has been sent');
         Navigator.pushNamed(context, SignForm.routeName);
       }
     } on FirebaseAuthException catch (e) {
@@ -83,12 +83,13 @@ class AuthService {
     }
   }
 
-//Sign Out
+// Sign Out
   Future<void> signOut(BuildContext context) async {
     await _auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const SignInScreen()));
+        context, MaterialPageRoute(builder: (context) => const SignForm()));
   }
+
 // //*Seller Section
 
 // //Seller Sign Up

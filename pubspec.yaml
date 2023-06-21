@@ -77,30 +77,30 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: fonts/Inter-Regular.ttf
-        - asset: fonts/Inter-Bold.ttf
-          weight: 700
-    - family: Outfit
-      fonts:
-        - asset: fonts/Outfit/Outfit-Regular.ttf
-          weight: 300
-        - asset: fonts/Outfit/Outfit-Medium.ttf
-          weight: 400
-        - asset: fonts/Outfit/Outfit-SemiBold.ttf
-          weight: 500
-        - asset: fonts/Outfit/Outfit-Bold.ttf
-          weight: 600
-    - family: Oswald
-      fonts:
-        - asset: fonts/Oswald/Oswald-Bold.ttf
-          weight: 700
-        - asset: fonts/Oswald/Oswald-Regular.ttf
-          weight: 300
-        - asset: fonts/Oswald/Oswald-SemiBold.ttf
-          weight: 500
+  # fonts:
+    # - family: Inter
+    #   fonts:
+    #     - asset: fonts/Inter-Regular.ttf
+    #     - asset: fonts/Inter-Bold.ttf
+    #       weight: 700
+    # - family: Outfit
+    #   fonts:
+    #     - asset: fonts/Outfit/Outfit-Regular.ttf
+    #       weight: 300
+    #     - asset: fonts/Outfit/Outfit-Medium.ttf
+    #       weight: 400
+    #     - asset: fonts/Outfit/Outfit-SemiBold.ttf
+    #       weight: 500
+    #     - asset: fonts/Outfit/Outfit-Bold.ttf
+    #       weight: 600
+    # - family: Oswald
+    #   fonts:
+    #     - asset: fonts/Oswald/Oswald-Bold.ttf
+    #       weight: 700
+    #     - asset: fonts/Oswald/Oswald-Regular.ttf
+    #       weight: 300
+    #     - asset: fonts/Oswald/Oswald-SemiBold.ttf
+    #       weight: 500
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
