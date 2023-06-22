@@ -4,6 +4,7 @@ import 'package:fit_fraternity_of_information_technology/main.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
+import 'package:fit_fraternity_of_information_technology/payment_membership.dart';
 import 'package:fit_fraternity_of_information_technology/screens/forgot_password/forgot_password_screen.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/components/sign_form.dart';
 // import 'package:fit_fraternity_of_information_technology/screens/sign_in/otp_screen.dart';
@@ -24,6 +25,7 @@ final Map<String, WidgetBuilder> routes = {
   MyHomePage.routeName: (context) => MyHomePage(),
   UserPage.routeName: (context) => const UserPage(),
   UpdateUserPage.routeName: (context) => const UpdateUserPage(),
+  PaymentMembership.routeName: (context) => const PaymentMembership(),
 
   // SignUpScreen.routeName: (context) => SignUpScreen(),
   // CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),

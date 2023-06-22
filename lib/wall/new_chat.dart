@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
+import 'package:fit_fraternity_of_information_technology/size_config.dart';
 import 'package:flutter/material.dart';
 
 class NewChat extends StatefulWidget {
@@ -46,7 +47,8 @@ class _NewChatState extends State<NewChat> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10)),
       child: Column(children: [
         Row(
           children: [
@@ -55,7 +57,7 @@ class _NewChatState extends State<NewChat> {
               controller: messagecontroller,
               decoration: InputDecoration(
                   labelText: 'Send a message...',
-                  fillColor: Colors.grey.shade200,
+                  fillColor: Colors.white,
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white)),

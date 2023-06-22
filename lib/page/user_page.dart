@@ -212,7 +212,8 @@ class UserPage extends StatelessWidget {
                           Expanded(
                             child: IconButton(
                                 alignment: Alignment.topRight,
-                                onPressed: () {},
+                                onPressed: () => Navigator.pushNamed(
+                                    context, UpdateUserPage.routeName),
                                 icon: Icon(Icons.arrow_forward_ios)),
                           )
                         ],
