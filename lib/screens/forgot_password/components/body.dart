@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:flutter/material.dart';
-
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
@@ -81,7 +81,7 @@ class ForgotPassForm extends StatefulWidget {
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String>? errors = [];
-  String? email = '';
+  String? email;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -90,11 +90,25 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         children: [
           Column(
             children: [
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                onSaved: (newValue) => email = newValue,
-                onChanged: (value) {
-                  if (value.isNotEmpty && errors!.contains(kEmailNullError)) {
+              TextFormFieldPulse(
+                keyboardtype: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    setState(() {
+                      errors!.add(kEmailNullError);
+                    });
+                  } else if (!emailValidatorRegExp.hasMatch(value)) {
+                    setState(() {
+                      errors!.add(kInvalidEmailError);
+                    });
+                  }
+                  return null;
+                },
+                hintText: 'Enter your email',
+                icon: Icon(Icons.email),
+                onsaved: (newValue) => email = newValue, // Add this line
+                onchanged: (value) {
+                  if (value!.isNotEmpty && errors!.contains(kEmailNullError)) {
                     setState(() {
                       errors!.remove(kEmailNullError);
                     });
@@ -105,36 +119,51 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                     });
                   }
                 },
-                validator: (value) {
-                  if (value == null ||
-                      value.isEmpty && !errors!.contains(kEmailNullError)) {
-                    setState(() {
-                      errors!.add(kEmailNullError);
-                    });
-                  } else if (!emailValidatorRegExp.hasMatch(value) &&
-                      !errors!.contains(kInvalidEmailError)) {
-                    setState(() {
-                      errors!.add(kInvalidEmailError);
-                    });
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  errorBorder: InputBorder.none,
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade400)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade400)),
-                  fillColor: Colors.white,
-                  filled: true,
-                  // labelText: 'Email',
-                  hintText: 'Enter your email',
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  suffixIcon: CustomSuffixIcon(
-                    svgIcon: 'assets/icons/Mail.svg',
-                  ),
-                ),
-              ),
+              )
+
+              // TextFormField(
+              //   keyboardType: TextInputType.emailAddress,
+              //   onSaved: (newValue) => email = newValue,
+              //   onChanged: (value) {
+              //     if (value.isNotEmpty && errors!.contains(kEmailNullError)) {
+              //       setState(() {
+              //         errors!.remove(kEmailNullError);
+              //       });
+              //     } else if (emailValidatorRegExp.hasMatch(value) &&
+              //         errors!.contains(kInvalidEmailError)) {
+              //       setState(() {
+              //         errors!.remove(kInvalidEmailError);
+              //       });
+              //     }
+              //   },
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       setState(() {
+              //         errors!.add(kEmailNullError);
+              //       });
+              //     } else if (!emailValidatorRegExp.hasMatch(value)) {
+              //       setState(() {
+              //         errors!.add(kInvalidEmailError);
+              //       });
+              //     }
+              //     return null;
+              //   },
+              //   decoration: InputDecoration(
+              //     errorBorder: InputBorder.none,
+              //     enabledBorder: OutlineInputBorder(
+              //         borderSide: BorderSide(color: Colors.grey.shade400)),
+              //     focusedBorder: OutlineInputBorder(
+              //         borderSide: BorderSide(color: Colors.grey.shade400)),
+              //     fillColor: Colors.white,
+              //     filled: true,
+              //     // labelText: 'Email',
+              //     hintText: 'Enter your email',
+              //     floatingLabelBehavior: FloatingLabelBehavior.always,
+              //     suffixIcon: CustomSuffixIcon(
+              //       svgIcon: 'assets/icons/Mail.svg',
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           SizedBox(height: getProportionateScreenHeight(30)),
@@ -143,13 +172,27 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           DefaultButton(
             text: 'Reset Password',
             onTap: () async {
+              // if (_formKey.currentState!.validate()) {
+              //   print('Email: $email');
+              //   await FirebaseAuth.instance
+              //       .sendPasswordResetEmail(email: email!)
+              //       .then((value) {
+              //     customSnackBar(context, 'Verification Email has been sent');
+              //   });
+              //   //* Do Whatever you want to do
+              // }
               if (_formKey.currentState!.validate()) {
-                await FirebaseAuth.instance
-                    .sendPasswordResetEmail(email: email!)
-                    .then((value) {
-                  customSnackBar(context, 'Verification Email has been sent');
-                });
-                //* Do Whatever you want to do
+                print('Email: $email'); // Debug statement
+                if (email != null && email!.isNotEmpty) {
+                  await FirebaseAuth.instance
+                      .sendPasswordResetEmail(email: email!)
+                      .then((value) {
+                    customSnackBar(context, 'Verification Email has been sent');
+                  });
+                  // Do whatever you want to do
+                } else {
+                  print('Email is empty or null'); // Debug statement
+                }
               }
             },
             fontSize: 25,

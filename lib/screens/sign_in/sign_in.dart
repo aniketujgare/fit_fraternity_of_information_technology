@@ -1,21 +1,21 @@
+import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:flutter/material.dart';
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
 import '../../../constants.dart';
 import '../../../services/auth.dart';
 import '../../../size_config.dart';
-import '../../forgot_password/forgot_password_screen.dart';
-import '../../sign_up/sign_up_screen.dart';
-import '../../widget/textformfield.dart';
+import '../forgot_password/forgot_password_screen.dart';
+import '../sign_up/sign_up_screen.dart';
 
-class SignForm extends StatefulWidget {
+class Signin extends StatefulWidget {
   static String routeName = '/sign_inemail';
-  const SignForm({Key? key}) : super(key: key);
+  const Signin({Key? key}) : super(key: key);
   @override
-  _SignFormState createState() => _SignFormState();
+  _SigninState createState() => _SigninState();
 }
 
-class _SignFormState extends State<SignForm> {
+class _SigninState extends State<Signin> {
   final _formKey = GlobalKey<FormState>();
   bool remember = false;
   String? email, password;
@@ -101,7 +101,10 @@ class _SignFormState extends State<SignForm> {
                             height: getProportionateScreenHeight(20),
                           ),
                           isLoading
-                              ? DefaultButtonAnimated(ontap: () {}, fontSize: 20,)
+                              ? DefaultButtonAnimated(
+                                  ontap: () {},
+                                  fontSize: 20,
+                                )
                               : DefaultButton(
                                   height: 50,
                                   text: 'Continue',
