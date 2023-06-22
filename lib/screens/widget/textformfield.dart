@@ -4,24 +4,18 @@ class TextFormFieldPulse extends StatelessWidget {
   final String hintText;
   final Widget icon;
   final bool obscureText;
-  final bool readOnly;
   final TextInputType? keyboardtype;
-  final String? initialValue;
   final Function(String?)? onsaved;
   final Function(String?)? onchanged;
   final String? Function(String?)? validator;
-  final void Function()? onTap;
   // final TextEditingController textFieldController;
   TextFormFieldPulse({
     Key? key,
     required this.hintText,
     required this.icon,
-    this.onsaved,
-    this.onchanged,
-    this.readOnly: false,
-    this.onTap,
+    required this.onsaved,
+    required this.onchanged,
     this.validator,
-    this.initialValue,
     this.keyboardtype,
     this.obscureText = false,
     // required this.textFieldController,
@@ -30,9 +24,6 @@ class TextFormFieldPulse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: initialValue,
-      readOnly: readOnly,
-      onTap: onTap,
       onSaved: onsaved,
       validator: validator,
       onChanged: onchanged,

@@ -1,6 +1,5 @@
 import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
@@ -18,8 +17,6 @@ class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? mobile;
-  // String? dateofbirth;
-  String? prn;
   String? password;
   String? name;
   final List<String>? errors = [];
@@ -40,12 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
     }
   }
 
-  // @override
-  // void initState() {
-  //   dateofbirth = ""; //set the initial value of text field
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -57,18 +48,15 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: getProportionateScreenHeight(30)),
             buildMobileFormField(),
             SizedBox(height: getProportionateScreenHeight(30)),
+            // Text("Email"),
             buildEmailFormField(),
             SizedBox(height: getProportionateScreenHeight(30)),
-            buildPRNFormField(),
-            SizedBox(height: getProportionateScreenHeight(30)),
-            // buildDateFormField(),
-            // SizedBox(height: getProportionateScreenHeight(30)),
             buildPasswordFormField(),
             SizedBox(height: getProportionateScreenHeight(30)),
             // buildConfPasswordPasswordFormField(),
 
             FormError(errors: errors!),
-            SizedBox(height: getProportionateScreenHeight(10)),
+            SizedBox(height: getProportionateScreenHeight(40)),
             isLoading
                 ? DefaultButtonAnimated(
                     ontap: () {},
@@ -93,9 +81,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             name!,
                             mobile!,
                             email!,
-                            prn!,
                             password!,
-                            // dateofbirth!,
                             context);
 
                         // await FirebaseFirestore.instance
@@ -220,90 +206,6 @@ class _SignUpFormState extends State<SignUpForm> {
       ],
     );
   }
-
-  Widget buildPRNFormField() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "PRN",
-          style: formtextstyle,
-        ),
-        SizedBox(height: getProportionateScreenHeight(8)),
-        TextFormFieldPulse(
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              addError(error: kPhoneNumberNullError);
-            }
-            prn = value;
-            return null;
-          },
-          keyboardtype: TextInputType.phone,
-          hintText: 'Enter your PRN',
-          icon: Icon(Icons.numbers_sharp),
-          onsaved: (newValue) => prn = newValue,
-          onchanged: (value) {
-            if (value!.isNotEmpty) {
-              removeError(error: kEmailNullError);
-            } else if (emailValidatorRegExp.hasMatch(value)) {
-              removeError(error: kInvalidEmailError);
-            }
-          },
-        )
-      ],
-    );
-  }
-
-  // Widget buildDateFormField() {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Text(
-  //         "Date of Birth",
-  //         style: formtextstyle,
-  //       ),
-  //       SizedBox(height: getProportionateScreenHeight(8)),
-  //       TextFormFieldPulse(
-  //         initialValue: dateofbirth,
-  //         readOnly: true,
-  //         onTap: () async {
-  //           DateTime? pickDate = await showDatePicker(
-  //               context: context,
-  //               initialDate: DateTime.now(),
-  //               firstDate: DateTime(2000),
-  //               lastDate: DateTime(2100));
-  //           if (pickDate != null) {
-  //             print(
-  //                 pickDate); //pickedDate output format => 2021-03-10 00:00:00.000
-  //             String formattedDate = DateFormat('yyyy-MM-dd').format(pickDate);
-  //             print(
-  //                 formattedDate); //formatted date output using intl package =>  2021-03-16
-  //             //you can implement different kind of Date Format here according to your requirement
-
-  //             setState(() {
-  //               dateofbirth =
-  //                   formattedDate; //set output date to TextField value.
-  //             });
-  //           } else {
-  //             print("Date is not selected");
-  //           }
-  //         },
-  //         // keyboardtype: TextInputType.phone,
-  //         hintText: 'Enter your Date of Birth',
-  //         icon: Icon(Icons.numbers_sharp),
-  //         // onsaved: (){},
-  //         // (newValue) => dateofbirth = newValue!,
-  //         // onchanged: (value) {
-  //         //   // if (value!.isNotEmpty) {
-  //         //   //   removeError(error: kEmailNullError);
-  //         //   // } else if (emailValidatorRegExp.hasMatch(value)) {
-  //         //   //   removeError(error: kInvalidEmailError);
-  //         //   // }
-  //         // },
-  //       )
-  //     ],
-  //   );
-  // }
 
   Widget buildnameFormField() {
     return Column(

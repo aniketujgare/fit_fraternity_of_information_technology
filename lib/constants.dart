@@ -19,9 +19,17 @@ const textStyle = TextStyle(
     fontSize: 18,
     fontFamily: 'Outfit',
     fontWeight: FontWeight.w500);
+// final headingStyle = TextStyle(
+//   fontFamily: GoogleFonts.bebasNeue(),
+//   fontSize: getProportionateScreenWidth(28),
+//   fontWeight: FontWeight.bold,
+//   color: Colors.black,
+//   height: 1.5,
+// );
 
 final headingStyle = GoogleFonts.bebasNeue(
   fontSize: getProportionateScreenWidth(28),
+  // fontWeight: FontWeight.bold,
   color: Colors.black,
 );
 final formtextstyle =
