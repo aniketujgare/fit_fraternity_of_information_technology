@@ -11,6 +11,6 @@ class PaymentMembership extends StatefulWidget {
 class _PaymentMembershipState extends State<PaymentMembership> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
 }

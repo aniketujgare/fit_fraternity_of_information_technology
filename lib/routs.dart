@@ -26,11 +26,10 @@ final Map<String, WidgetBuilder> routes = {
   MyHomePage.routeName: (context) => MyHomePage(),
   UserPage.routeName: (context) => const UserPage(),
   UpdateUserPage.routeName: (context) => const UpdateUserPage(),
-<<<<<<< HEAD
+
   PaymentMembership.routeName: (context) => const PaymentMembership(),
-=======
+
   ChangePassword.routeName: (context) => ChangePassword()
->>>>>>> 3e83f087b1dd3e2dca46a2964e140c3c2e3e38ae
 
   // SignUpScreen.routeName: (context) => SignUpScreen(),
   // CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),

@@ -5,7 +5,7 @@ import 'package:fit_fraternity_of_information_technology/page/comitee_page.dart'
 import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_gallery_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
-import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
+//import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in.dart';
@@ -18,6 +18,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
+import 'wall/news_page.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

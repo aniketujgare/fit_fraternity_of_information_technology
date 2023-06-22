@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
 import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
+import 'package:fit_fraternity_of_information_technology/payment_membership.dart';
 import 'package:flutter/material.dart';
 import '../screens/sign_in/sign_in.dart';
 import '../size_config.dart';
@@ -212,7 +213,7 @@ class UserPage extends StatelessWidget {
                             child: IconButton(
                                 alignment: Alignment.topRight,
                                 onPressed: () => Navigator.pushNamed(
-                                    context, UpdateUserPage.routeName),
+                                    context, PaymentMembership.routeName),
                                 icon: Icon(Icons.arrow_forward_ios)),
                           )
                         ],
