@@ -3,6 +3,7 @@ import 'package:fit_fraternity_of_information_technology/constants.dart';
 import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:fit_fraternity_of_information_technology/payment_membership.dart';
+import 'package:fit_fraternity_of_information_technology/services/auth.dart';
 import 'package:flutter/material.dart';
 import '../screens/sign_in/sign_in.dart';
 import '../size_config.dart';
@@ -95,7 +96,7 @@ class UserPage extends StatelessWidget {
                   color: Colors.white),
               height: getProportionateScreenHeight(170),
               width: getProportionateScreenWidth(330),
-              child: const Column(
+              child: Column(
                 children: [
                   Expanded(
                     child: Padding(
@@ -111,11 +112,31 @@ class UserPage extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           Expanded(
-                            child: Text(
-                              "1930331246040@dbatu.ac.in",
-                              // style: TextStyle(fontSize: 18),
-                              textAlign: TextAlign.end,
+                            child:
+
+                                // FutureBuilder(builder: (context,snapshot ){}),
+                                FutureBuilder(
+                              future: getuseremail(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Text(
+                                    snapshot.requireData,
+                                    textAlign: TextAlign.end,
+                                  );
+                                } else {
+                                  return Text(
+                                    'prn',
+                                    textAlign: TextAlign.end,
+                                  );
+                                }
+                              },
                             ),
+
+                            // child: Text(
+                            //   "1930331246040@dbatu.ac.in",
+                            //   // style: TextStyle(fontSize: 18),
+                            //   textAlign: TextAlign.end,
+                            // ),
                           )
                         ],
                       ),
@@ -139,10 +160,11 @@ class UserPage extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           Expanded(
-                              child: Text(
-                            "24.03.2002",
-                            textAlign: TextAlign.end,
-                          ))
+                            child: Text(
+                              "24.03.2002",
+                              textAlign: TextAlign.end,
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -165,10 +187,28 @@ class UserPage extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           Expanded(
-                              child: Text(
-                            "1930331246040",
-                            textAlign: TextAlign.end,
-                          ))
+                            child: FutureBuilder(
+                              future: getuserprn(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Text(
+                                    snapshot.requireData,
+                                    textAlign: TextAlign.end,
+                                  );
+                                } else {
+                                  return Text(
+                                    'prn',
+                                    textAlign: TextAlign.end,
+                                  );
+                                }
+                              },
+                            ),
+
+                            //     Text(
+                            //   "1930331246040",
+                            //   textAlign: TextAlign.end,
+                            // ),
+                          )
                         ],
                       ),
                     ),

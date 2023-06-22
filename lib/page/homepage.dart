@@ -54,66 +54,6 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // RichText(
-                //   text: TextSpan(
-                //     text: 'Hi',
-                //     style: GoogleFonts.karla(
-                //       fontSize: 20,
-                //       color: const Color(0xff463B57),
-                //     ),
-                //     children: [
-                //       TextSpan(
-                //         text: '\ Aniket ✌',
-                //         style: GoogleFonts.sacramento(
-                //           fontSize: 20,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //       TextSpan(
-                //         text:
-                //             '\nWelcome to Fraternity of Information Technology!',
-                //         style: GoogleFonts.karla(
-                //             fontSize: 13, fontWeight: FontWeight.bold),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-
-                // RichText(
-                //   text: TextSpan(
-                //     text: 'Hi',
-                //     style: GoogleFonts.karla(
-                //       fontSize: 20,
-                //       color: const Color(0xff463B57),
-                //     ),
-                //     children: [
-                //       WidgetSpan(
-                //         child: StreamBuilder<String>(
-                //           stream: getUserStream(),
-                //           builder: (context, snapshot) {
-                //             if (snapshot.hasData) {
-                //               return Text(
-                //                 'logged in as ${snapshot.data}',
-                //                 style: GoogleFonts.karla(
-                //                   fontSize: 20,
-                //                   color: const Color(0xff463B57),
-                //                 ),
-                //               );
-                //             } else {
-                //               return Text(
-                //                 'User!',
-                //                 style: GoogleFonts.karla(
-                //                   fontSize: 20,
-                //                   color: const Color(0xff463B57),
-                //                 ),
-                //               );
-                //             }
-                //           },
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
 
                 StreamBuilder<String>(
                   stream: getUserStream(),
@@ -230,15 +170,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 15,
           ),
-          // Card(
-          //   elevation: 10,
-          //   shape:
-          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          //   child: ClipRRect(
-          //       borderRadius: BorderRadius.circular(20),
-          //       child: Image.asset('assets/banner1.jpg')),
-          // ),
-          // const SizedBox(height: 72),
+          
         ],
       ),
     );
