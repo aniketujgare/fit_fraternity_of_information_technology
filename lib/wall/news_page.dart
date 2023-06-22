@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/wall/messages.dart';
 import 'package:fit_fraternity_of_information_technology/wall/new_chat.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import '../size_config.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
@@ -29,15 +26,23 @@ class _NewsPage extends State<NewsPage> {
           backgroundColor: Colors.grey[900]),
       // ignore: prefer_interpolation_to_compose_strings
       body: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10)),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Container(
-          height: getProportionateScreenHeight(630),
+          height: 600,
           child: Column(children: [
-            Expanded(child: Messages()),
-            SizedBox(
-              height: getProportionateScreenHeight(10),
+            FutureBuilder(
+              future: getuser(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    "logged in as " + snapshot.requireData,
+                  );
+                } else {
+                  return Text('User!');
+                }
+              },
             ),
+            Expanded(child: Messages()),
             NewChat(),
           ]),
         ),
