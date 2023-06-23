@@ -78,10 +78,12 @@ class ForgotPassForm extends StatefulWidget {
   _ForgotPassFormState createState() => _ForgotPassFormState();
 }
 
+String? email;
+
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String>? errors = [];
-  String? email;
+  // String? email;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -106,8 +108,13 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 },
                 hintText: 'Enter your email',
                 icon: Icon(Icons.email),
-                onsaved: (newValue) => email = newValue, // Add this line
+                onsaved: (newValue) {
+                  print('newValue: $newValue');
+                  email = newValue;
+                },
+                // email = newValue, // Add this line
                 onchanged: (value) {
+                  email = value;
                   if (value!.isNotEmpty && errors!.contains(kEmailNullError)) {
                     setState(() {
                       errors!.remove(kEmailNullError);

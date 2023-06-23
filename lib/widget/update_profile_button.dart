@@ -72,28 +72,3 @@ class FitPulseButton extends StatelessWidget {
   }
 }
 
-final currentuser = FirebaseAuth.instance.currentUser!;
-Future<String> getuser() async {
-  var querySnapshot = await FirebaseFirestore.instance
-      .collection('users')
-      .where('email', isEqualTo: currentuser.email)
-      .get();
-  return querySnapshot.docs[0].data()['name'];
-}
-
-Stream<String> getUserStream() async* {
-  yield await getuser();
-}
-
-String getCurrentUserEmail() {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final User? user = auth.currentUser;
-
-  if (user != null) {
-    final String email = user.email ?? '';
-    return email;
-  } else {
-    // User is not signed in
-    return '';
-  }
-}

@@ -3,9 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
+import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../services/auth.dart';
 
 final List<String> imgList = [
   'assets/poster_1.png',
@@ -54,39 +57,37 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-                StreamBuilder<String>(
-                  stream: getUserStream(),
-                  builder: (context, snapshot) {
-                    return RichText(
-                      text: TextSpan(
-                        text: 'Hi',
-                        style: GoogleFonts.karla(
-                          fontSize: 20,
-                          color: const Color(0xff463B57),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: snapshot.hasData ? ' ${snapshot.data} ✌' : '',
-                            style: GoogleFonts.sacramento(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text:
-                                '\nWelcome to Fraternity of Information Technology!',
-                            style: GoogleFonts.karla(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-
+                // StreamBuilder<String>(
+                //   stream: getUserStream(),
+                //   builder: (context, snapshot) {
+                //     return RichText(
+                //       text: TextSpan(
+                //         text: 'Hi',
+                //         style: GoogleFonts.karla(
+                //           fontSize: 20,
+                //           color: const Color(0xff463B57),
+                //         ),
+                //         children: [
+                //           TextSpan(
+                //             text: snapshot.hasData ? ' ${snapshot.data} ✌' : '',
+                //             style: GoogleFonts.sacramento(
+                //               fontSize: 20,
+                //               fontWeight: FontWeight.bold,
+                //             ),
+                //           ),
+                //           TextSpan(
+                //             text:
+                //                 '\nWelcome to Fraternity of Information Technology!',
+                //             style: GoogleFonts.karla(
+                //               fontSize: 13,
+                //               fontWeight: FontWeight.bold,
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     );
+                //   },
+                // ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(11.0), //or 15.0
                   child: Container(
@@ -170,7 +171,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 15,
           ),
-          
         ],
       ),
     );
@@ -240,17 +240,4 @@ Future<void> _launchUrl() async {
   if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
     throw 'Could not launch $_url';
   }
-}
-
-final currentuser = FirebaseAuth.instance.currentUser!;
-Future<String> getuser() async {
-  var querySnapshot = await FirebaseFirestore.instance
-      .collection('users')
-      .where('email', isEqualTo: currentuser.email)
-      .get();
-  return querySnapshot.docs[0].data()['name'];
-}
-
-Stream<String> getUserStream() async* {
-  yield await getuser();
 }

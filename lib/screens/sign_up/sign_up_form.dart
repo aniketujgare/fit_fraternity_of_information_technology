@@ -83,6 +83,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       //set animate bool
 
                       if (_formKey.currentState!.validate()) {
+                        // final user UserModel(email:email);
                         //* GO to complete profile page
                         await AuthService().registerInWithEmailAndPassword(
                             // "tushar",
@@ -91,6 +92,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             // "tushar425",
 
                             name!,
+                            // "7875738666",
                             mobile!,
                             email!,
                             prn!,
