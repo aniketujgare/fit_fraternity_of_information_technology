@@ -57,37 +57,38 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // StreamBuilder<String>(
-                //   stream: getUserStream(),
-                //   builder: (context, snapshot) {
-                //     return RichText(
-                //       text: TextSpan(
-                //         text: 'Hi',
-                //         style: GoogleFonts.karla(
-                //           fontSize: 20,
-                //           color: const Color(0xff463B57),
-                //         ),
-                //         children: [
-                //           TextSpan(
-                //             text: snapshot.hasData ? ' ${snapshot.data} ✌' : '',
-                //             style: GoogleFonts.sacramento(
-                //               fontSize: 20,
-                //               fontWeight: FontWeight.bold,
-                //             ),
-                //           ),
-                //           TextSpan(
-                //             text:
-                //                 '\nWelcome to Fraternity of Information Technology!',
-                //             style: GoogleFonts.karla(
-                //               fontSize: 13,
-                //               fontWeight: FontWeight.bold,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     );
-                //   },
-                // ),
+                StreamBuilder<String>(
+                  stream: getuser().asStream(),
+                  // stream: getUserStream(),
+                  builder: (context, snapshot) {
+                    return RichText(
+                      text: TextSpan(
+                        text: 'Hi',
+                        style: GoogleFonts.karla(
+                          fontSize: 20,
+                          color: const Color(0xff463B57),
+                        ),
+                        children: [
+                          TextSpan(
+                            text: snapshot.hasData ? ' ${snapshot.data} ✌' : '',
+                            style: GoogleFonts.sacramento(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                '\nWelcome to Fraternity of Information Technology!',
+                            style: GoogleFonts.karla(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(11.0), //or 15.0
                   child: Container(
@@ -103,16 +104,16 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           const Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.only(bottom: 15, left: 15, right: 15, top: 0),
             child: Text(
               'Upcoming Event\'s',
+              textAlign: TextAlign.start,
             ),
           ),
-          // Image.network(imgLink),
           CarouselSlider(
             options: CarouselOptions(
               height: 275,
@@ -170,6 +171,11 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(
             height: 15,
+          ),
+
+          Container(
+            decoration: BoxDecoration(color: Colors.amberAccent),
+            height: 500,
           ),
         ],
       ),

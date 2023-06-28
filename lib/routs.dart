@@ -1,9 +1,11 @@
 // import 'dart:js';
 
 import 'package:fit_fraternity_of_information_technology/main.dart';
+import 'package:fit_fraternity_of_information_technology/page/aboutfit.dart';
 import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/user_changepassword.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/payment_membership.dart';
 import 'package:fit_fraternity_of_information_technology/screens/forgot_password/forgot_password_screen.dart';
@@ -26,10 +28,10 @@ final Map<String, WidgetBuilder> routes = {
   MyHomePage.routeName: (context) => MyHomePage(),
   UserPage.routeName: (context) => const UserPage(),
   UpdateUserPage.routeName: (context) => const UpdateUserPage(),
-
   PaymentMembership.routeName: (context) => const PaymentMembership(),
-
-  ChangePassword.routeName: (context) => ChangePassword()
+  Aboutfit.routeName: (context) => const Aboutfit(),
+  ChangeUserPassword.routeName: (context) => const ChangeUserPassword(),
+  // ChangePassword.routeName: (context) => ChangePassword(),
 
   // SignUpScreen.routeName: (context) => SignUpScreen(),
   // CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),

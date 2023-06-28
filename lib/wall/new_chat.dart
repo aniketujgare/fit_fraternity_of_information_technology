@@ -30,17 +30,35 @@ class _NewChatState extends State<NewChat> {
     messagecontroller.clear();
     //send to firebase
     final user = FirebaseAuth.instance.currentUser!;
-    final userData = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uid)
-        .get();
+
+    // final userData = await FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(user.uid)
+    //     .get();
+    final currentUser = FirebaseAuth.instance.currentUser!;
+    final userName = await getUserName(currentUser.email!);
 
     FirebaseFirestore.instance.collection('chat').add({
       'text': enteredmessage,
       'userId': user.uid,
       'createdAt': Timestamp.now(),
-      'userName': userData.data()!['name'],
+      'userName': userName,
+      // userData['name'],
     });
+  }
+
+  Future<String> getUserName(String email) async {
+    var querySnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .get();
+    if (querySnapshot.docs.isNotEmpty) {
+      // Accessing the first document in the query snapshot
+      var userData = querySnapshot.docs[0].data();
+      return userData['name'];
+    }
+    // Handle the case when no documents match the query
+    return '';
   }
 
   @override
@@ -69,3 +87,16 @@ class _NewChatState extends State<NewChat> {
     );
   }
 }
+//  Future<String> getUserName(String email) async {
+//   var querySnapshot = await FirebaseFirestore.instance
+//       .collection('users')
+//       .where('email', isEqualTo: email)
+//       .get();
+//   if (querySnapshot.docs.isNotEmpty) {
+//     // Accessing the first document in the query snapshot
+//     var userData = querySnapshot.docs[0].data();
+//     return userData['name'];
+//   }
+//   // Handle the case when no documents match the query
+//   return '';
+// }

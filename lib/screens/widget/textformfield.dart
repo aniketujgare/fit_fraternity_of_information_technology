@@ -7,6 +7,7 @@ class TextFormFieldPulse extends StatelessWidget {
   final bool readOnly;
   final TextInputType? keyboardtype;
   final String? initialValue;
+  final Widget? suffixIcon;
   final Function(String?)? onsaved;
   final Function(String?)? onchanged;
   final String? Function(String?)? validator;
@@ -23,7 +24,7 @@ class TextFormFieldPulse extends StatelessWidget {
     this.validator,
     this.initialValue,
     this.keyboardtype,
-    this.obscureText = false,
+    this.obscureText = false, this.suffixIcon,
     // required this.textFieldController,
   }) : super(key: key);
 
@@ -42,6 +43,7 @@ class TextFormFieldPulse extends StatelessWidget {
       // controller: textFieldController,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         prefixIcon: icon,
         prefixIconColor: const Color(0xffADB6C1),
         prefixIconConstraints:

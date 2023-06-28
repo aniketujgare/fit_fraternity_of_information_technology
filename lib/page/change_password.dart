@@ -1,23 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
-import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
-import 'package:fit_fraternity_of_information_technology/services/auth.dart';
-import 'package:fit_fraternity_of_information_technology/widget/update_profile_button.dart';
 import 'package:flutter/material.dart';
 
 import '../components/default_button.dart';
 import '../size_config.dart';
 
 class ChangePassword extends StatefulWidget {
-  static String routeName = '/change_password';
-  ChangePassword({super.key});
+  const ChangePassword({super.key});
 
   @override
   State<ChangePassword> createState() => _ChangePasswordState();
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  bool obscure = true;
+  Icon icon = Icon(Icons.visibility_off);
   final _formKey = GlobalKey<FormState>();
   bool remember = false;
   String? oldPassword, newPassword1, newPassword2;
@@ -30,7 +28,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     var cred =
         EmailAuthProvider.credential(email: email, password: oldPassword);
     await currentUser!.reauthenticateWithCredential(cred).then((value) {
-      currentUser!.updatePassword(newPassword1);
+      currentUser.updatePassword(newPassword1);
     }).catchError((errors) {
       print(errors.toString());
     });
@@ -57,148 +55,215 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        // automaticallyImplyLeading: false,
+        toolbarHeight: 70,
         elevation: 0,
-        leading: GestureDetector(
-            onTap: () => Navigator.of(context).pop(),
-            child: const Icon(Icons.arrow_back_rounded, color: Colors.black)),
+        leading: IconButton(
+          color: Colors.black,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          alignment: Alignment.centerLeft,
+          icon: Icon(Icons.arrow_back_rounded, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+
+        // GestureDetector(f(context).pop(),
+        //     child: const Icon(Icons.arrow_back_rounded, color: Colors.black)),
         backgroundColor: Colors.white,
         title: Text(
-          'Change Password',
-          style: textStyle.copyWith(fontSize: 24),
+          textAlign: TextAlign.left,
+          'Back',
+          style: textStyle.copyWith(fontSize: 20),
         ),
       ),
-      body: Center(
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 15,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormFieldPulse(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        addError(error: kPassNullError);
-                        // return '';
-                      } else if (value.length < 8) {
-                        addError(error: kShortPassError);
-                        // return '';
-                      }
-                      return null;
-                    },
-                    onchanged: (value) {
-                      if (value!.isNotEmpty) {
-                        removeError(error: kPassNullError);
-                      } else if (value.length >= 8) {
-                        removeError(error: kShortPassError);
-                      }
-                      return;
-                    },
-                    onsaved: (newValue) => oldPassword = newValue,
-                    hintText: 'Current Password',
-                    icon: const Icon(Icons.person),
-                    // textFieldController: null,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormFieldPulse(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        addError(error: kPassNullError);
-                        // return '';
-                      } else if (value.length < 8) {
-                        addError(error: kShortPassError);
-                        // return '';
-                      }
-                      return null;
-                    },
-                    onchanged: (value) {
-                      if (value!.isNotEmpty) {
-                        removeError(error: kPassNullError);
-                      } else if (value.length >= 8) {
-                        removeError(error: kShortPassError);
-                      }
-                      return;
-                    },
-                    onsaved: (newValue) => newPassword1 = newValue,
-                    hintText: 'New Password',
-                    icon: const Icon(Icons.person),
-                    // textFieldController: null,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormFieldPulse(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        addError(error: kPassNullError);
-                        // return '';
-                      } else if (value.length < 8) {
-                        addError(error: kShortPassError);
-                        // return '';
-                      }
-                      return null;
-                    },
-                    onchanged: (value) {
-                      if (value!.isNotEmpty) {
-                        removeError(error: kPassNullError);
-                      } else if (value.length >= 8) {
-                        removeError(error: kShortPassError);
-                      }
-                      return;
-                    },
-                    onsaved: (newValue) => newPassword2 = newValue,
-                    hintText: 'New Password',
-                    icon: const Icon(Icons.person),
-                    // textFieldController: null,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  isLoading
-                      ? DefaultButtonAnimated(
-                          ontap: () {},
-                          fontSize: 20,
-                        )
-                      : DefaultButton(
-                          height: 50,
-                          text: 'Continue',
-                          onTap: () async {
-                            //set animate bool
-                            if (isLoading) return;
-                            setState(() => isLoading = true);
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Text("Create New Password",
+                  style: textStyle.copyWith(fontSize: 27)),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  "Your new password must be different from previous used passwords.",
+                  style: textStyle.copyWith(
+                      fontSize: 18, fontWeight: FontWeight.normal)),
+              Form(
+                key: _formKey,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      TextFormFieldPulse(
+                        obscureText: obscure,
+                        suffixIcon: IconButton(
+                            color: Colors.black,
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onPressed: () {
+                              setState(() {
+                                obscure = !obscure;
+                                if (obscure) {
+                                  icon = Icon(Icons.visibility_off);
+                                } else {
+                                  icon = Icon(Icons.visibility);
+                                }
+                              });
+                            },
+                            icon: icon),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            addError(error: kPassNullError);
+                            // return '';
+                          } else if (value.length < 8) {
+                            addError(error: kShortPassError);
+                            // return '';
+                          }
+                          return null;
+                        },
+                        onchanged: (value) {
+                          if (value!.isNotEmpty) {
+                            removeError(error: kPassNullError);
+                          } else if (value.length >= 8) {
+                            removeError(error: kShortPassError);
+                          }
+                          return;
+                        },
+                        onsaved: (newValue) => oldPassword = newValue,
+                        hintText: 'Current Password',
+                        icon: const Icon(Icons.lock_open_sharp),
+                        // textFieldController: null,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      TextFormFieldPulse(
+                        obscureText: obscure,
+                        suffixIcon: IconButton(
+                            color: Colors.black,
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onPressed: () {
+                              setState(() {
+                                obscure = !obscure;
+                                if (obscure) {
+                                  icon = Icon(Icons.visibility_off);
+                                } else {
+                                  icon = Icon(Icons.visibility);
+                                }
+                              });
+                            },
+                            icon: icon),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            addError(error: kPassNullError);
+                            // return '';
+                          } else if (value.length < 8) {
+                            addError(error: kShortPassError);
+                            // return '';
+                          }
+                          return null;
+                        },
+                        onchanged: (value) {
+                          if (value!.isNotEmpty) {
+                            removeError(error: kPassNullError);
+                          } else if (value.length >= 8) {
+                            removeError(error: kShortPassError);
+                          }
+                          return;
+                        },
+                        onsaved: (newValue) => newPassword1 = newValue,
+                        hintText: 'New Password',
+                        icon: const Icon(Icons.lock_outline_sharp),
+                        // textFieldController: null,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      TextFormFieldPulse(
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            addError(error: kPassNullError);
+                            // return '';
+                          } else if (value.length < 8) {
+                            addError(error: kShortPassError);
+                            // return '';
+                          }
+                          return null;
+                        },
+                        onchanged: (value) {
+                          if (value!.isNotEmpty) {
+                            removeError(error: kPassNullError);
+                          } else if (value.length >= 8) {
+                            removeError(error: kShortPassError);
+                          }
+                          return;
+                        },
+                        onsaved: (newValue) => newPassword2 = newValue,
+                        hintText: 'New Password',
+                        icon: const Icon(Icons.lock_outline_sharp),
+                        // textFieldController: null,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      isLoading
+                          ? DefaultButtonAnimated(
+                              ontap: () {},
+                              fontSize: 20,
+                            )
+                          : DefaultButton(
+                              height: 50,
+                              text: 'Reset Password',
+                              onTap: () async {
+                                //set animate bool
+                                if (isLoading) return;
+                                setState(() => isLoading = true);
 
-                            //set animate bool
+                                //set animate bool
 
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                              ChangePassword(
-                                  email: 19,
-                                  oldPassword: oldPassword,
-                                  newPassword1: newPassword1);
-                              //* if all are valid then go to success screen
-                            }
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  ChangePassword(
+                                      email: 19,
+                                      oldPassword: oldPassword,
+                                      newPassword1: newPassword1);
+                                  //* if all are valid then go to success screen
+                                }
 
-                            setState(() => isLoading = false); //animation bool
-                          },
-                          fontSize: getProportionateScreenWidth(18),
-                        ),
-                  // FitPulseButton(
-                  //   fontSize: 16,
-                  //   height: 55,
-                  //   // showArrow: false,
-                  //   hMargin: 0,
-                  //   onTap: () {},
-                  //   text: 'Update Password',
-                  // )
-                ]),
+                                setState(
+                                    () => isLoading = false); //animation bool
+                              },
+                              fontSize: getProportionateScreenWidth(18),
+                            ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      // FitPulseButton(
+                      //   fontSize: 16,
+                      //   height: 55,
+                      //   // showArrow: false,
+                      //   hMargin: 0,
+                      //   onTap: () {},
+                      //   text: 'Update Password',
+                      // )
+                    ]),
+              ),
+            ],
           ),
         ),
       ),

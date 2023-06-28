@@ -17,6 +17,8 @@ class Signin extends StatefulWidget {
 
 class _SigninState extends State<Signin> {
   final _formKey = GlobalKey<FormState>();
+  bool obscure = true;
+  Icon icon = Icon(Icons.visibility_off);
   bool remember = false;
   String? email, password;
   List<String>? errors = [];
@@ -102,6 +104,7 @@ class _SigninState extends State<Signin> {
                           ),
                           isLoading
                               ? DefaultButtonAnimated(
+                                  height: 50,
                                   ontap: () {},
                                   fontSize: 20,
                                 )
@@ -173,7 +176,7 @@ class _SigninState extends State<Signin> {
         SizedBox(height: getProportionateScreenHeight(8)),
         TextFormFieldPulse(
           hintText: 'john@email.com',
-          icon: const Icon(Icons.email),
+          icon: const Icon(Icons.person_2_sharp),
           onchanged: (value) {
             if (value!.isNotEmpty) {
               removeError(error: kEmailNullError);
@@ -207,9 +210,26 @@ class _SigninState extends State<Signin> {
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
         TextFormFieldPulse(
-          obscureText: true,
+          obscureText: obscure,
+          suffixIcon: IconButton(
+              color: Colors.black,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onPressed: () {
+                setState(() {
+                  obscure = !obscure;
+                  if (obscure) {
+                    icon = Icon(Icons.visibility_off);
+                  } else {
+                    icon = Icon(Icons.visibility);
+                  }
+                });
+              },
+              icon: icon),
+
+          // obscureText: true,
           hintText: '8+ characters required',
-          icon: Icon(Icons.password),
+          icon: Icon(Icons.lock_outline_sharp),
           onchanged: (value) {
             if (value!.isNotEmpty) {
               removeError(error: kPassNullError);

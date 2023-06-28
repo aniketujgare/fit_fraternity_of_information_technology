@@ -14,7 +14,7 @@ class UpdateUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentuserr = FirebaseAuth.instance.currentUser!;
+    final currentuser = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -33,7 +33,7 @@ class UpdateUserPage extends StatelessWidget {
         child: FutureBuilder(
             future:
                 // getUserda
-                getUserDetails(currentuserr.email.toString()),
+                getUserDetails(currentuser.email.toString()),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.hasData) {
@@ -94,7 +94,7 @@ class UpdateUserPage extends StatelessWidget {
                       TextFormFieldPulse(
                         initialValue: userdata?.name ?? "",
                         hintText: 'Name',
-                        icon: const Icon(Icons.person),
+                        icon: const Icon(Icons.person_2_sharp),
                         // textFieldController: null,
                       ),
                       const SizedBox(
@@ -103,7 +103,7 @@ class UpdateUserPage extends StatelessWidget {
                       TextFormFieldPulse(
                         initialValue: userdata?.prn,
                         hintText: 'PRN',
-                        icon: const Icon(Icons.person),
+                        icon: const Icon(Icons.numbers_sharp),
                         // textFieldController: null,
                       ),
                       const SizedBox(
@@ -112,16 +112,16 @@ class UpdateUserPage extends StatelessWidget {
                       TextFormFieldPulse(
                         initialValue: userdata!.mobile,
                         hintText: 'Enter your mobile',
-                        icon: const Icon(Icons.person),
+                        icon: const Icon(Icons.local_phone_outlined),
                         // textFieldController: null,
                       ),
                       const SizedBox(
                         height: 25,
                       ),
                       TextFormFieldPulse(
-                        initialValue: userdata?.mobile,
-                        hintText: 'Year Of Graduation',
-                        icon: const Icon(Icons.person),
+                        initialValue: userdata.dateofbirth,
+                        hintText: 'Date of Birth',
+                        icon: const Icon(Icons.date_range),
                         // textFieldController: null,
                       ),
                       const SizedBox(

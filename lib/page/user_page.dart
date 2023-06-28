@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
+import 'package:fit_fraternity_of_information_technology/page/aboutfit.dart';
 import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/user_changepassword.dart';
 import 'package:fit_fraternity_of_information_technology/payment_membership.dart';
 import 'package:fit_fraternity_of_information_technology/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
     SizeConfig().init(context);
-    final currentuserr = FirebaseAuth.instance.currentUser!;
+    final currentuser = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       // backgroundColor: const Color(0xffF7F7F7),
       backgroundColor: Colors.grey[200],
@@ -62,7 +64,7 @@ class UserPage extends StatelessWidget {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(22)),
           child: FutureBuilder(
-              future: getUserDetails(currentuserr.email.toString()),
+              future: getUserDetails(currentuser.email.toString()),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done &&
                     snapshot.hasData) {
@@ -133,7 +135,7 @@ class UserPage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      "24.03.2002",
+                                      userdata.dateofbirth ?? "",
                                       textAlign: TextAlign.end,
                                     ),
                                   )
@@ -204,6 +206,9 @@ class UserPage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: IconButton(
+                                        color: Colors.black,
+                                        splashColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         alignment: Alignment.topRight,
                                         onPressed: () => Navigator.pushNamed(
                                             context,
@@ -249,9 +254,13 @@ class UserPage extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: IconButton(
+                                        color: Colors.black,
+                                        splashColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         alignment: Alignment.topRight,
                                         onPressed: () => Navigator.pushNamed(
-                                            context, ChangePassword.routeName),
+                                            context,
+                                            ChangeUserPassword.routeName),
                                         icon: Icon(Icons.arrow_forward_ios)),
                                   )
                                 ],
@@ -281,6 +290,9 @@ class UserPage extends StatelessWidget {
                                   ),
                                   Expanded(
                                       child: IconButton(
+                                    color: Colors.black,
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     alignment: Alignment.centerRight,
                                     onPressed: () {},
                                     icon: Icon(Icons.arrow_forward_ios),
@@ -315,9 +327,13 @@ class UserPage extends StatelessWidget {
                                   ),
                                   Expanded(
                                       child: IconButton(
+                                    color: Colors.black,
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     alignment: Alignment.centerRight,
                                     icon: Icon(Icons.arrow_forward_ios),
-                                    onPressed: () {},
+                                    onPressed: () => Navigator.pushNamed(
+                                        context, Aboutfit.routeName),
                                   ))
                                 ],
                               ),

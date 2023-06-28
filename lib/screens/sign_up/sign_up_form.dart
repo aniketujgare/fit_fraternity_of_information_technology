@@ -16,9 +16,11 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  bool obscure = true;
+  Icon icon = Icon(Icons.visibility_off);
   String? email;
   String? mobile;
-  // String? dateofbirth;
+  String? dateofbirth;
   String? prn;
   String? password;
   String? name;
@@ -61,8 +63,8 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: getProportionateScreenHeight(30)),
             buildPRNFormField(),
             SizedBox(height: getProportionateScreenHeight(30)),
-            // buildDateFormField(),
-            // SizedBox(height: getProportionateScreenHeight(30)),
+            buildDateofBirthFormField(),
+            SizedBox(height: getProportionateScreenHeight(30)),
             buildPasswordFormField(),
             SizedBox(height: getProportionateScreenHeight(30)),
             // buildConfPasswordPasswordFormField(),
@@ -92,12 +94,11 @@ class _SignUpFormState extends State<SignUpForm> {
                             // "tushar425",
 
                             name!,
-                            // "7875738666",
                             mobile!,
                             email!,
                             prn!,
+                            dateofbirth!,
                             password!,
-                            // dateofbirth!,
                             context);
 
                         // await FirebaseFirestore.instance
@@ -125,7 +126,23 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
         SizedBox(height: getProportionateScreenHeight(8)),
         TextFormFieldPulse(
-          obscureText: true,
+          obscureText: obscure,
+          suffixIcon: IconButton(
+              color: Colors.black,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onPressed: () {
+                setState(() {
+                  obscure = !obscure;
+                  if (obscure) {
+                    icon = Icon(Icons.visibility_off);
+                  } else {
+                    icon = Icon(Icons.visibility);
+                  }
+                });
+              },
+              icon: icon),
+          // obscureText: true,
           hintText: '8+ characters required',
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -137,7 +154,7 @@ class _SignUpFormState extends State<SignUpForm> {
             }
             return null;
           },
-          icon: Icon(Icons.password),
+          icon: Icon(Icons.lock_outline_rounded),
           onsaved: (newValue) => password = newValue,
           onchanged: (value) {
             if (value!.isNotEmpty) {
@@ -190,6 +207,36 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
+  Widget buildDateofBirthFormField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Date of Birth",
+          style: formtextstyle,
+        ),
+        SizedBox(height: getProportionateScreenHeight(8)),
+        TextFormFieldPulse(
+          keyboardtype: TextInputType.phone,
+          hintText: 'Enter your Date of Birth',
+          icon: Icon(Icons.date_range),
+          validator: (value) {
+            dateofbirth = value;
+            return null;
+          },
+          onsaved: (newValue) => dateofbirth = newValue,
+          onchanged: (value) {
+            //   // if (value!.isNotEmpty) {
+            //   //   removeError(error: kEmailNullError);
+            //   // } else if (emailValidatorRegExp.hasMatch(value)) {
+            //   //   removeError(error: kInvalidEmailError);
+            //   // }
+          },
+        )
+      ],
+    );
+  }
+
   Widget buildMobileFormField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,7 +256,7 @@ class _SignUpFormState extends State<SignUpForm> {
           },
           keyboardtype: TextInputType.phone,
           hintText: 'Enter your mobile',
-          icon: Icon(Icons.phone_enabled_outlined),
+          icon: Icon(Icons.local_phone_outlined),
           onsaved: (newValue) => mobile = newValue,
           onchanged: (value) {
             if (value!.isNotEmpty) {
@@ -234,22 +281,22 @@ class _SignUpFormState extends State<SignUpForm> {
         SizedBox(height: getProportionateScreenHeight(8)),
         TextFormFieldPulse(
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              addError(error: kPhoneNumberNullError);
-            }
+            // if (value == null || value.isEmpty) {
+            //   addError(error: kPhoneNumberNullError);
+            // }
             prn = value;
             return null;
           },
           keyboardtype: TextInputType.phone,
           hintText: 'Enter your PRN',
-          icon: Icon(Icons.numbers_sharp),
+          icon: Icon(Icons.numbers),
           onsaved: (newValue) => prn = newValue,
           onchanged: (value) {
-            if (value!.isNotEmpty) {
-              removeError(error: kEmailNullError);
-            } else if (emailValidatorRegExp.hasMatch(value)) {
-              removeError(error: kInvalidEmailError);
-            }
+            // if (value!.isNotEmpty) {
+            //   removeError(error: kEmailNullError);
+            // } else if (emailValidatorRegExp.hasMatch(value)) {
+            //   removeError(error: kInvalidEmailError);
+            // }
           },
         )
       ],
