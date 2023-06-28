@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/auth.dart';
+import '../widget/update_profile_button.dart';
 
 final List<String> imgList = [
   'assets/poster_1.png',
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     String imgLink =
-        'https://lh3.googleusercontent.com/pw/AL9nZEWs3cKY40KLjCEaF4GWEC5u8yuN3KcJnORkk8kG418cobRHY_u1j5cqs02BCMj4iVq8Y2PR48gTeY05X39PBFktDIji0Ca8mhyrWO0GMclXYMUda2Xm-ygTopXCvzlE3HhJ0B_oEKvvAfK0JJNYhNSQhg=w665-h830-no?authuser=0';
+        'https://firebasestorage.googleapis.com/v0/b/fraternity-of-information-tech.appspot.com/o/user_profile%2Ftushar.jpg?alt=media&token=908b55e8-d0f1-42f3-ab8f-0daaf5e1748b';
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -48,9 +49,9 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 25,
-          ),
+          // const SizedBox(
+          //   height: 25,
+          // ),
           Padding(
             padding: const EdgeInsets.all(15),
             child: Row(
@@ -172,11 +173,18 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 15,
           ),
-
-          Container(
-            decoration: BoxDecoration(color: Colors.amberAccent),
-            height: 500,
+          Card(
+            elevation: 8,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset('assets/banner1.jpg')),
           ),
+          // Container(
+          //   decoration: BoxDecoration(color: Colors.amberAccent),
+          //   height: 500,
+          // ),
         ],
       ),
     );
@@ -200,7 +208,7 @@ class SomeDialog extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Student Inaguration Programe',
+          'Deatils of  Programe',
           style: GoogleFonts.karla(color: Colors.black),
         ),
         leading: IconButton(
@@ -225,14 +233,21 @@ class SomeDialog extends StatelessWidget {
             // padding: EdgeInsets.all(8),
             width: double.maxFinite,
             height: 55,
-            child: TextButton(
-              style: TextButton.styleFrom(backgroundColor: Colors.blue),
-              onPressed: () => _launchUrl(),
-              child: Text(
-                'Register',
-                style: GoogleFonts.karla(color: Colors.white, fontSize: 20),
-              ),
+            child: FitPulseButton(
+              fontSize: 16,
+              height: 55,
+              hMargin: 0,
+              onTap: () => _launchUrl(),
+              text: 'Register',
             ),
+            // child: TextButton(
+            //   style: TextButton.styleFrom(backgroundColor: Colors.blue),
+            //   onPressed: () => _launchUrl(),
+            //   child: Text(
+            //     'Register',
+            //     style: GoogleFonts.karla(color: Colors.white, fontSize: 20),
+            //   ),
+            // ),
           )
         ],
       ),

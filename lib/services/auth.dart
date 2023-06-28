@@ -224,7 +224,7 @@ Future<String> getuser() async {
       .get();
   if (querySnapshot.docs.isNotEmpty) {
     // Accessing the first document in the query snapshot
-    var userData = querySnapshot.docs[0].data();
+    var userData = querySnapshot.docs[0].data() as Map<String, dynamic>;
     return userData['name'];
     // print("name");
   }

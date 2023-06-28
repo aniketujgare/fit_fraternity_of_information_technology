@@ -20,25 +20,27 @@ class _NewsPage extends State<NewsPage> {
     getusername();
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Color.fromRGBO(242, 242, 254, 1),
       appBar: AppBar(
-          title: Text(
-            "The Wall",
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-                fontFamily: 'Outfit',
-                fontWeight: FontWeight.w500),
-          ),
-          // centerTitle: true,
-          automaticallyImplyLeading: false,
-          elevation: 0,
-          backgroundColor: Colors.grey[200]),
+        toolbarHeight: 70,
+        title: Text(
+          "The Wall",
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 25,
+              fontFamily: 'Outfit',
+              fontWeight: FontWeight.w500),
+        ),
+        // centerTitle: true,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        backgroundColor: Color.fromRGBO(242, 242, 254, 1),
+      ),
       // ignore: prefer_interpolation_to_compose_strings
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Container(
-          height: 600,
+          height: getProportionateScreenHeight(625),
           child: Column(children: [
             // FutureBuilder(
             //   future: getuser(),

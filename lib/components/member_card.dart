@@ -10,14 +10,14 @@ class MemberCard extends StatelessWidget {
     required this.lastName,
     required this.designation,
     required this.phoneNumber1,
-    required this.phoneNumber2,
+    this.phoneNumber2,
     required this.email,
     required this.website,
     required this.address1,
-    required this.address2,
-    required this.latitude,
-    required this.longitude,
-    required this.placeLabel,
+    this.address2,
+    this.latitude,
+    this.longitude,
+    this.placeLabel,
   }) : super(key: key);
 
   final String imgLink;
@@ -25,14 +25,14 @@ class MemberCard extends StatelessWidget {
   final String lastName;
   final String designation;
   final String phoneNumber1;
-  final String phoneNumber2;
+  final String? phoneNumber2;
   final String email;
   final String website;
-  final String latitude;
-  final String longitude;
-  final String placeLabel;
+  final String? latitude;
+  final String? longitude;
+  final String? placeLabel;
   final String address1;
-  final String address2;
+  final String? address2;
 
   @override
   Widget build(BuildContext context) {
@@ -264,7 +264,7 @@ class MemberCard extends StatelessWidget {
                             FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
-                                address2,
+                                address2!,
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -293,9 +293,9 @@ class MemberCard extends StatelessWidget {
                           child: FloatingActionButton(
                             backgroundColor: Colors.white,
                             onPressed: () => openMap(
-                                latitude: latitude,
-                                longitude: longitude,
-                                label: placeLabel),
+                                latitude: latitude!,
+                                longitude: longitude!,
+                                label: placeLabel!),
                             child: const Image(
                               image: AssetImage(
                                 'assets/home.png',

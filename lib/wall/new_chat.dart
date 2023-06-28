@@ -65,17 +65,19 @@ class _NewChatState extends State<NewChat> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Column(children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
                 child: TextField(
               controller: messagecontroller,
               decoration: InputDecoration(
                   labelText: 'Send a message...',
-                  fillColor: Colors.grey.shade200,
+                  fillColor: Colors.white,
                   filled: true,
                   enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
                       borderSide: BorderSide(color: Colors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white))),

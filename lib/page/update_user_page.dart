@@ -119,7 +119,7 @@ class UpdateUserPage extends StatelessWidget {
                         height: 25,
                       ),
                       TextFormFieldPulse(
-                        initialValue: userdata.dateofbirth,
+                        initialValue: userdata!.dateofbirth,
                         hintText: 'Date of Birth',
                         icon: const Icon(Icons.date_range),
                         // textFieldController: null,

@@ -17,9 +17,14 @@ class ImageGalleryPage extends StatelessWidget {
             child: CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
+                  backgroundColor: Colors.transparent,
                   automaticallyImplyLeading: false,
-                  centerTitle: true,
-                  title: Text('Image Gallery'),
+                  // centerTitle: true,
+                  title: Text(
+                    textAlign: TextAlign.left,
+                    'Image Gallery',
+                    style: textStyle.copyWith(fontSize: 20),
+                  ),
                 ),
                 SliverGrid(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

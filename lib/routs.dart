@@ -3,6 +3,7 @@
 import 'package:fit_fraternity_of_information_technology/main.dart';
 import 'package:fit_fraternity_of_information_technology/page/aboutfit.dart';
 import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
+import 'package:fit_fraternity_of_information_technology/page/help.dart';
 import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
 import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
 import 'package:fit_fraternity_of_information_technology/page/user_changepassword.dart';
@@ -31,22 +32,5 @@ final Map<String, WidgetBuilder> routes = {
   PaymentMembership.routeName: (context) => const PaymentMembership(),
   Aboutfit.routeName: (context) => const Aboutfit(),
   ChangeUserPassword.routeName: (context) => const ChangeUserPassword(),
-  // ChangePassword.routeName: (context) => ChangePassword(),
-
-  // SignUpScreen.routeName: (context) => SignUpScreen(),
-  // CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
-  // OtpScreen.routeName: (context) => OtpScreen(),
-  // HomeScreen.routName: (context) => HomeScreen(),
-  // DetailsScreen.routeName: (context) => DetailsScreen(),
-  // CartScreen.routeName: (context) => CartScreen(),
-  // ProfileScreen.routeName: (context) => ProfileScreen(),
-  // RoleChoose.routeName: (context) => RoleChoose(),
-  // SignUpSellerScreen.routeName: (context) => SignUpSellerScreen(),
-  // FeedsScreen.routeName: (context) => FeedsScreen(),
-  // SellerDashboardScreen.routName: (context) => SellerDashboardScreen(),
-  // SignInSellerScreen.routeName: (context) => SignInSellerScreen(),
-  // ProductAddForm.routName: (context) => ProductAddForm(),
-  // RestaurantBookingHomeScreen.routName: (context) =>
-  //     RestaurantBookingHomeScreen(),
-  // Profile.routName: (context) => Profile()
+  HelpScreen.routeName: (context) => HelpScreen(),
 };

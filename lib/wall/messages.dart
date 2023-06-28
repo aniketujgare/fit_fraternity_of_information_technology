@@ -54,7 +54,7 @@ class Messages extends StatelessWidget {
                 } else {
                   return MessageBubble.first(
                       userImage:
-                          'https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_1280.jpg',
+                          'https://cdn-icons-png.flaticon.com/512/219/219986.png',
                       username: chatMessage['userName'],
                       message: chatMessage['text'],
                       isMe: authenticatedUser.uid == currentMessageUserId);
