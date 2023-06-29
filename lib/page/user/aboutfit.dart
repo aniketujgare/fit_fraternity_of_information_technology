@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class Aboutfit extends StatelessWidget {
   static String routeName = '/about_fit';

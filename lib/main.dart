@@ -1,12 +1,12 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
-import 'package:fit_fraternity_of_information_technology/page/comitee_page.dart';
-import 'package:fit_fraternity_of_information_technology/page/homepage.dart';
-import 'package:fit_fraternity_of_information_technology/page/image_gallery_page.dart';
-import 'package:fit_fraternity_of_information_technology/page/image_picker.dart';
+import 'package:fit_fraternity_of_information_technology/page/comittee/comitee_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/home/homepage.dart';
+import 'package:fit_fraternity_of_information_technology/page/image/image_gallery_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/image/image_picker.dart';
 //import 'package:fit_fraternity_of_information_technology/page/news_page.dart';
-import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/user_page.dart';
 import 'package:fit_fraternity_of_information_technology/routs.dart';
 import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in.dart';
 // import 'package:fit_fraternity_of_information_technology/screens/sign_in/sign_in_screen.dart';

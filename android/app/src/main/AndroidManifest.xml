@@ -7,7 +7,7 @@
     </intent>
     </queries> -->
    <application
-        android:label="fit_fraternity_of_information_technology"
+        android:label="FIT"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

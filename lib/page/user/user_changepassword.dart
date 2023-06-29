@@ -1,4 +1,4 @@
-import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/change_password.dart';
 import 'package:flutter/material.dart';
 
 class ChangeUserPassword extends StatelessWidget {

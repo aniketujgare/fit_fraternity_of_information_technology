@@ -3,8 +3,8 @@ import 'package:fit_fraternity_of_information_technology/constants.dart';
 import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:flutter/material.dart';
 
-import '../components/default_button.dart';
-import '../size_config.dart';
+import '../../components/default_button.dart';
+import '../../size_config.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});

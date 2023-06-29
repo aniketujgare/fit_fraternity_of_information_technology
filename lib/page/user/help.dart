@@ -1,7 +1,7 @@
 import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class HelpScreen extends StatelessWidget {
   static String routeName = '/hep';

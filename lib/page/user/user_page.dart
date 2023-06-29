@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
-import 'package:fit_fraternity_of_information_technology/page/aboutfit.dart';
-import 'package:fit_fraternity_of_information_technology/page/change_password.dart';
-import 'package:fit_fraternity_of_information_technology/page/help.dart';
-import 'package:fit_fraternity_of_information_technology/page/update_user_page.dart';
-import 'package:fit_fraternity_of_information_technology/page/user_changepassword.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/aboutfit.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/change_password.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/help.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/update_user_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/user_changepassword.dart';
 import 'package:fit_fraternity_of_information_technology/payment_membership.dart';
 import 'package:fit_fraternity_of_information_technology/services/auth.dart';
 import 'package:flutter/material.dart';
-import '../screens/sign_in/sign_in.dart';
-import '../size_config.dart';
-import '../wall/news_page.dart';
-import '../widget/update_profile_button.dart';
+import '../../screens/sign_in/sign_in.dart';
+import '../../size_config.dart';
+import '../../wall/news_page.dart';
+import '../../widget/update_profile_button.dart';
 
 class UserPage extends StatelessWidget {
   static String routeName = '/User_page';

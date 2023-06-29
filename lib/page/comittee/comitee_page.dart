@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../components/member_card.dart';
+import '../../components/member_card.dart';
 
 // int currentIndexPage = 0;
 // CarouselController carControll = CarouselController();

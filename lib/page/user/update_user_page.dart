@@ -1,16 +1,53 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/constants.dart';
-import 'package:fit_fraternity_of_information_technology/page/user_page.dart';
+import 'package:fit_fraternity_of_information_technology/page/user/utils.dart';
 import 'package:fit_fraternity_of_information_technology/screens/widget/textformfield.dart';
 import 'package:fit_fraternity_of_information_technology/widget/update_profile_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
-import '../services/auth.dart';
-import '../wall/news_page.dart';
+import '../../services/auth.dart';
 
-class UpdateUserPage extends StatelessWidget {
+// ignore: must_be_immutable
+class UpdateUserPage extends StatefulWidget {
   static String routeName = '/update_user';
-  const UpdateUserPage({super.key});
+  UpdateUserPage({super.key});
+
+  @override
+  State<UpdateUserPage> createState() => _UpdateUserPageState();
+}
+
+class _UpdateUserPageState extends State<UpdateUserPage> {
+  Uint8List? _iamge;
+
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() {
+      _iamge = img;
+    });
+  }
+
+  Future<Uint8List?> getImageFile() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      final bytes = await pickedFile.readAsBytes();
+      return bytes;
+    } else {
+      return null;
+    }
+  }
+  // Future<Uint8List?> getImageFile() async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  //   if (pickedFile != null) {
+  //     final bytes = await pickedFile.readAsBytes();
+  //     return bytes;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +92,26 @@ class UpdateUserPage extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: Color(0xffF7F7F7)),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Icon(
-                                  Icons.person,
-                                  size: 90,
-                                  color: Colors.black,
-                                ),
-                              )),
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: _iamge != null
+                                      ? CircleAvatar(
+                                          backgroundImage: MemoryImage(_iamge!),
+                                        )
+                                      : CircleAvatar(
+                                          backgroundColor: Colors.transparent,
+                                          child: Icon(
+                                            Icons.person,
+                                            size: 90,
+                                            color: Colors.black,
+                                          ),
+                                        )
+                                  // CircleAvatar(backgroundColor: Colors.black),
+                                  // child: Icon(
+                                  //   Icons.person,
+                                  //   size: 90,
+                                  //   color: Colors.black,
+                                  // ),
+                                  )),
                           Positioned(
                             bottom: 10,
                             right: 3,
@@ -74,10 +124,12 @@ class UpdateUserPage extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: const Color(0xffF7F7F7)),
                               child: GestureDetector(
-                                onTap: () {
-                                  // _onImageButtonPressed(ImageSource.gallery,
-                                  //     context: context);
-                                },
+                                onTap: selectImage
+                                // () {
+                                // _onImageButtonPressed(ImageSource.gallery,
+                                //     context: context);
+                                // }
+                                ,
                                 child: const Icon(Icons.edit,
                                     size: 20, color: Colors.black),
                               ),
@@ -131,7 +183,18 @@ class UpdateUserPage extends StatelessWidget {
                         fontSize: 16,
                         height: 55,
                         hMargin: 0,
-                        onTap: () {},
+                        onTap: () async {
+                          // Get the image file, replace `getImageFile()` with your own method to retrieve the image file
+                          // Uint8List? imageFile = await getImageFile();
+
+                          // if (imageFile != null) {
+                          //   String response =
+                          //       await StoredData().saveData(file: imageFile);
+                          //   print(response);
+                          // } else {
+                          //   print("Image file not selected");
+                          // }
+                        },
                         text: 'Save',
                       )
                     ]);

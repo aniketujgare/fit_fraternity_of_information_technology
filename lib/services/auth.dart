@@ -1,25 +1,137 @@
-// import 'dart:html';
-
+import 'dart:ffi';
+import 'dart:typed_data';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_fraternity_of_information_technology/main.dart';
-// import 'package:fit_fraternity_of_information_technology/wall/news_page.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
-// import '../screens/sign_in/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../page/user_page.dart';
+import '../page/user/user_page.dart';
 import '../screens/sign_in/sign_in.dart';
+
+final FirebaseStorage _storage = FirebaseStorage.instance;
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+User? currentUser = FirebaseAuth.instance.currentUser;
+String? userId = currentUser?.uid;
+
+class StoredData {
+  Future<String> uploadImageToStorage(String childName, Uint8List file) async {
+    Reference ref = _storage.ref().child(childName);
+    UploadTask uploadTask = ref.putData(file);
+    TaskSnapshot snapshot = await uploadTask;
+    String downloadURL = await snapshot.ref.getDownloadURL();
+    return downloadURL;
+  }
+
+  Future<String> saveData({required Uint8List file}) async {
+    String resp = "Some Error Occurred";
+    try {
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      String? userId = currentUser?.uid;
+
+      if (userId != null) {
+        String imageURL = await uploadImageToStorage("profileImage", file);
+
+        await _firestore.collection("users").doc(userId).set({
+          "imgUrl": imageURL,
+        });
+
+        resp = "Data saved successfully";
+      } else {
+        resp = "User ID not available";
+      }
+    } catch (error) {
+      resp = error.toString();
+    }
+    return resp;
+  }
+
+  Future<String> fetchData() async {
+    String resp = "Some Error Occurred";
+    try {
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      String? userId = currentUser?.uid;
+
+      if (userId != null) {
+        DocumentSnapshot snapshot =
+            await _firestore.collection("users").doc(userId).get();
+        if (snapshot.exists) {
+          Map<String, dynamic> userData =
+              snapshot.data() as Map<String, dynamic>;
+          String imageURL = userData["imgUrl"];
+          resp = "Image URL: $imageURL";
+        } else {
+          resp = "User data not found";
+        }
+      } else {
+        resp = "User ID not available";
+      }
+    } catch (error) {
+      resp = error.toString();
+    }
+    return resp;
+  }
+}
+
+// class StoredData {
+//   Future<String> uploadImageTOStorage(String childName, Uint8List file) async {
+//     Reference ref = _storage.ref().child(childName);
+//     UploadTask uploadTask = ref.putData(file);
+//     TaskSnapshot snapshot = await uploadTask;
+//     String downloadurl = await snapshot.ref.getDownloadURL();
+//     return downloadurl;
+//   }
+// Future<String> saveData({required Uint8List file}) async {
+//     String resp = "Some Error Occurred";
+//     try {
+//       String imageURL = await uploadImageTOStorage("profileImage", file);
+//       String userId = "12345"; // Replace with the current user's ID
+
+//       await _firestore.collection("users").doc(userId).set({
+//         "imgUrl": imageURL,
+//       });
+
+//       resp = "Data saved successfully";
+//     } catch (error) {
+//       resp = error.toString();
+//     }
+//     return resp;
+//   }
+//    Future<String> fetchData() async {
+//     String resp = "Some Error Occurred";
+//     try {
+//       String userId = "12345"; // Replace with the current user's ID
+
+//       DocumentSnapshot snapshot =
+//           await _firestore.collection("users").doc(userId).get();
+//       if (snapshot.exists) {
+//         Map<String, dynamic> userData = snapshot.data() as Map<String, dynamic>;
+//         String imageURL = userData["imgUrl"];
+//         resp = "Image URL: $imageURL";
+//       } else {
+//         resp = "User data not found";
+//       }
+//     } catch (error) {
+//       resp = error.toString();
+//     }
+//     return resp;
+//   }
+//   // Future<String> saveData({required Uint8List file}) async {
+//   //   String resp = "Some Error Occured";
+//   //   try {
+//   //    Future<String> imageurl= uploadImageTOStorage("profileImage", file);
+//   //   } catch (err) {
+//   //     resp = err.toString();
+//   //   }
+//   //   return resp;
+//   // }
+// }
 
 class AuthService {
   late final User? firebaseuser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _db = FirebaseFirestore.instance;
-//   @override
-// void onready(){
-//   firebaseuser = User?(_auth.currentUser);
-// }
-  // register with email & password
   Future registerInWithEmailAndPassword(
       String name,
       String mobile,
@@ -41,20 +153,6 @@ class AuthService {
             dateofbirth: dateofbirth,
             password: password,
           ).toJson());
-
-      //     .doc(userCredential.user!.uid)
-      //     .set({
-      //   'name': name,
-      //   'email': email,
-      //   // 'Date of Birth': dateofbirth,
-      //   'mobileNumber': mobile,
-      //   'PRN': prn,
-      //   'password': password
-      // });
-      // await FirebaseFirestore.instance
-      //     .collection("users")
-      //     .doc(userCredential.user!.uid)
-      //     .set({});
 
       if (userCredential.user != null && !userCredential.user!.emailVerified) {
         await userCredential.user!.sendEmailVerification();
@@ -113,45 +211,8 @@ class AuthService {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const Signin()));
   }
+  // update profile and image
 }
-
-// // final currentuser = FirebaseAuth.instance.currentUser!;
-// Future<String> getusername() async {
-//   final currentuser = FirebaseAuth.instance.currentUser!;
-//   var querySnapshot = await FirebaseFirestore.instance
-//       .collection('users')
-//       .where('email', isEqualTo: currentuser.email)
-//       .get();
-//   return querySnapshot.docs[0].data()['name'];
-//   // return "ygyg";
-// }
-
-// Future<String> getusermobile() async {
-//   var querySnapshot = await FirebaseFirestore.instance
-//       .collection('users')
-//       .where('email', isEqualTo: currentuser.email)
-//       .get();
-//   return querySnapshot.docs[0].data()['mobile'];
-//   // return "ygyg";
-// }
-
-// Future<String> getuserprn() async {
-//   var querySnapshot = await FirebaseFirestore.instance
-//       .collection('users')
-//       .where('email', isEqualTo: currentuser.email)
-//       .get();
-//   return querySnapshot.docs[0].data()['PRN'];
-//   // return "ygyg";
-// }
-
-// Future<String> getuseremail() async {
-//   var querySnapshot = await FirebaseFirestore.instance
-//       .collection('users')
-//       .where('email', isEqualTo: currentuser.email)
-//       .get();
-//   return querySnapshot.docs[0].data()['email'];
-//   // return "ygyg";
-// }
 
 Future<UserModel> getUserDetails(String email) async {
   final snapshot = await FirebaseFirestore.instance
@@ -215,61 +276,3 @@ class UserModel {
     );
   }
 }
-
-final currentuser = FirebaseAuth.instance.currentUser!;
-Future<String> getuser() async {
-  var querySnapshot = await FirebaseFirestore.instance
-      .collection('users')
-      .where('email', isEqualTo: currentuser.email)
-      .get();
-  if (querySnapshot.docs.isNotEmpty) {
-    // Accessing the first document in the query snapshot
-    var userData = querySnapshot.docs[0].data() as Map<String, dynamic>;
-    return userData['name'];
-    // print("name");
-  }
-  // Handle the case when no documents match the query
-  return '';
-  // return querySnapshot.docs[0].data()['name'];
-}
-
-// Stream<String> getUserStream() async* {
-//   yield await getuser();
-// }
-// Stream<String> getUserStream() {
-//   final user = FirebaseAuth.instance.currentUser;
-//   if (user != null) {
-//     final userDoc =
-//         FirebaseFirestore.instance.collection('users').doc(user.uid);
-//     return userDoc.snapshots().map((snapshot) => snapshot['PRN'] ?? 'hi');
-//   } else {
-//     return Stream.value('hi vaibhav');
-//   }
-// }
-
-// String getCurrentUserEmail() {
-//   final FirebaseAuth auth = FirebaseAuth.instance;
-//   final User? user = auth.currentUser;
-
-//   if (user != null) {
-//     final String email = user.email ?? '';
-//     return email;
-//   } else {
-//     // User is not signed in
-//     return '';
-//   }
-// }
-
-//                 FutureBuilder(
-//               future: getUserDetails(currentuser.email.toString()),
-//               builder: (context, snapshot) {
-//                 if (snapshot.connectionState == ConnectionState.done &&
-//                     snapshot.hasData) {
-//                   UserModel? userdata = snapshot.data as UserModel;
-//                   return
-//
-// Text("") } else if (snapshot.hasError) {
-//                   return Text(snapshot.hasError.toString());
-//                 } else
-//                   return Text("_");
-//               }),
