@@ -49,23 +49,24 @@ class HelpScreen extends StatelessWidget {
                 "Hassle-free support for all your app inquiries. Quick and personalized assistance to enhance your user experience.",
                 style: textStyle.copyWith(
                     fontSize: 18, fontWeight: FontWeight.normal)),
-            Form(
-                child: Column(
-              children: [
-                TextFormFieldPulse(
-                  hintText: "email",
-                  icon: Icon(Icons.email),
-                ),
-                TextFormFieldPulse(
-                  hintText: "email",
-                  icon: Icon(Icons.email),
-                ),
-                TextFormFieldPulse(
-                  hintText: "email",
-                  icon: Icon(Icons.email),
-                ),
-              ],
-            ))
+            // Form(
+            //     child: Column(
+            //   children: [
+            //     TextFormFieldPulse(
+            //       hintText: "email",
+            //       icon: Icon(Icons.email),
+            //     ),
+            //     TextFormFieldPulse(
+            //       hintText: "email",
+            //       icon: Icon(Icons.email),
+            //     ),
+            //     TextFormFieldPulse(
+            //       hintText: "email",
+            //       icon: Icon(Icons.email),
+            //     ),
+            //   ],
+            // ),
+            // )
           ]),
         ),
       ),
